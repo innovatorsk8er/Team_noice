@@ -1,3 +1,4 @@
+import java.awt.Color;
 
 public enum Farbe {
 
@@ -35,8 +36,8 @@ public enum Farbe {
     }
 
     //Or even these
-    public Farbe getColor(){
-        return new Farbe(r,g,b);
+    public Color getColor(){
+        return new Color(r,g,b);
     }
 
     public int getARGB(){
