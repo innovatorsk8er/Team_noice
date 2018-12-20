@@ -1,8 +1,19 @@
 
-public class Eingeladener extends Profil {
+public class Eingeladener extends Profil  {
 
 	//String email von Profil erben
-	Eingeladener Email = (Eingeladener) new Profil();
+	Profil email = new Eingeladener ();
+	TerminEinladung einladung = new Eingeladener (); //
+	Termin termin = new Eingeladener();
+		
+	
+	if (TerminEinladung = true) {
+		
+		
+		
+	}
+	
+	
 
 	
 }

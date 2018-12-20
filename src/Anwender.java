@@ -1,40 +1,47 @@
 /**
  * @author Viviane Traber, BWI-A17
- * @since 6.12.18
- * Anwenderklasse, die beschreibt, welche Eigenschaften ein Anwender hat.
+ * @since 6.12.18 Anwenderklasse, die beschreibt, welche Eigenschaften ein
+ *        Anwender hat.
  */
-public class Anwender extends Profil { //Speicher Verbindung muss noch hergestellt werden
-	
-	Anwender Email = (Anwender) new Profil(); 	
-	private String Name;
-	private String Vorname;
-	//Anwender Speicher = new Speicher();
+public class Anwender extends Profil { 
+	// AnwenderSicherung Verbindung muss noch hergestellt werden
+	Anwender email = (Anwender) new Profil();
+	//TerminEinladung einladung = new Anwender();
 
-	
-	public Anwender () {
-		this.Name = "Gediz";
-		this.Vorname = "Fatma";
-		
-		
-	}
-	public String getName() {
-		return Name;
+	private String nachname;
+	private String vorname;
+	// Speicher speicher = new Anwender ();
+
+	public Anwender() {
+		this.nachname = "";
+		this.vorname = "";
+
 	}
 
-
-	public void setName(String name) {
-		Name = name;
+	public String getNachname() {
+		return nachname;
 	}
 
+	public void setNachname(String nachname) {
+		this.nachname = nachname;
+	}
 
 	public String getVorname() {
-		return Vorname;
+		return vorname;
 	}
-
 
 	public void setVorname(String vorname) {
-		Vorname = vorname;
+		this.vorname = vorname;
 	}
-	
-	
+
+	{if(nachname.length(0))
+
+	{
+		if (vorname.length(0)) {
+			System.out.println(vorname + nachname + "Vorname und Nachname ist leer, bitte eingeben.");
+		} else g
+		et.Speicher // Vorname & Nachname in Speicher übergeben		
+	}
 }
+}
+
