@@ -1,4 +1,8 @@
-
+/**
+ * @author Viviane Traber, BWI-A17
+ * @since 6.12.18
+ * Anwenderklasse, die beschreibt, welche Eigenschaften ein Anwender hat.
+ */
 public class Anwender extends Profil { //Speicher Verbindung muss noch hergestellt werden
 	
 	Anwender Email = (Anwender) new Profil(); 	
