@@ -1,7 +1,11 @@
-
+/**
+ * @author Viviane Traber, BWI-A17
+ * @since 6.12.18 Klasse, die beschreibt, welche Eigenschaften ein
+ *        Eingeladener User hat.
+ */
 public class Eingeladener extends Profil  {
 
-	//String email von Profil erben
+	//Profildaten/Anwenderdaten aus Speicher holen?
 	Profil email = new Eingeladener ();
 	TerminEinladung einladung = new Eingeladener (); //
 	Termin termin = new Eingeladener();
