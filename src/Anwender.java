@@ -3,18 +3,24 @@
  * @since 6.12.18 Anwenderklasse, die beschreibt, welche Eigenschaften ein
  *        Anwender hat.
  */
-public class Anwender extends Profil { 
-	// AnwenderSicherung Verbindung muss noch hergestellt werden
-	Anwender email = (Anwender) new Profil();
-	//TerminEinladung einladung = new Anwender();
-
+public class Anwender implements Profil {
+	// TerminEinladung einladung = new Anwender();
+	private String email;
 	private String nachname;
 	private String vorname;
-	// Speicher speicher = new Anwender ();
+	private AnwenderSicherung anwenderSicherung;
+	private String domain = "@student.fh-hwz.ch";
 
 	public Anwender() {
-		this.nachname = "";
-		this.vorname = "";
+		this.getAnwenderSicherung();
+		if (anwenderSicherung.getHatProfil()) {
+
+			this.nachname = anwenderSicherung.getAnwender().getNachname();
+			this.vorname = anwenderSicherung.getAnwender().getVorname();
+			this.email = anwenderSicherung.getAnwender().getEmail();
+		} else {
+			kontrolleProfil();
+		}
 
 	}
 
@@ -34,14 +40,45 @@ public class Anwender extends Profil {
 		this.vorname = vorname;
 	}
 
-	{if(nachname.length(0))
+	public String getEmail() {
+		return email;
+	}
 
-	{
-		if (vorname.length(0)) {
-			System.out.println(vorname + nachname + "Vorname und Nachname ist leer, bitte eingeben.");
-		} else g
-		et.Speicher // Vorname & Nachname in Speicher übergeben		
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Anwender getAnwenderSicherung() {
+		return this.anwenderSicherung.getSicherung();
+	}
+
+	public void setAnwenderSicherung() {
+		this.anwenderSicherung.setSicherung(this);
+	}
+
+	private void kontrolleProfil(){
+		if(nachname.isEmpty())
+		{
+			System.out.println(vorname + "Nachname ist leer, bitte eingeben.");
+		}
+		if (vorname.isEmpty()) 
+		{
+			System.out.println(nachname + "Vorname ist leer, bitte eingeben.");
+		} 
+		
+	}
+
+	public String domainkontrolle() {
+		if (email.contains(domain)) {
+			return "Domain ist korrekt";
+		} else {
+			return "Bitte verwenden Sie eine Student.fh-hwz.ch Adresse.";
+		}
+	}
+
+	@Override
+	public void setEmail() {
+		// TODO Auto-generated method stub
+		
 	}
 }
-}
-

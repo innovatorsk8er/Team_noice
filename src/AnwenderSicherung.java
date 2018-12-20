@@ -9,6 +9,7 @@ public class AnwenderSicherung {
 
 	private Anwender	anwender;
 	private ObjectOutputStream oos;
+	private boolean profilVorhanden = false;
 	
 	public AnwenderSicherung () {
 		
@@ -36,9 +37,20 @@ public class AnwenderSicherung {
 			FileInputStream fis = new FileInputStream ("Team.noice");
 		    ObjectInputStream ois = new ObjectInputStream (fis);
 		    this.anwender = (Anwender) ois.readObject ();
+		    if (this.anwender != null){
+		    	profilVorhanden = true;
+		    }
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
 		return this.anwender;
+	}
+	
+	public boolean getHatProfil() {
+		return profilVorhanden;
+	}
+	
+	public Anwender getAnwender() {
+		return anwender;
 	}
 }
