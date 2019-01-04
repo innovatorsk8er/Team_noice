@@ -1,3 +1,4 @@
+import enums.Farbe;
 
 public class Termin {
 	private String titel;

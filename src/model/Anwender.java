@@ -1,21 +1,21 @@
+package model;
+
 /**
  * @author Viviane Traber, BWI-A17
  * @since 6.12.18 Anwenderklasse, die beschreibt, welche Eigenschaften ein
  *        Anwender hat.
  */
 public class Anwender extends Profil { 
-	// AnwenderSicherung Verbindung muss noch hergestellt werden
-	Anwender email = (Anwender) new Profil();
+	//Anwender email = (Anwender) new Profil();
 	//TerminEinladung einladung = new Anwender();
-
 	private String nachname;
 	private String vorname;
-	// Speicher speicher = new Anwender ();
+	private String email;
+	private boolean status;
 
 	public Anwender() {
 		this.nachname = "";
 		this.vorname = "";
-
 	}
 
 	public String getNachname() {
@@ -33,7 +33,21 @@ public class Anwender extends Profil {
 	public void setVorname(String vorname) {
 		this.vorname = vorname;
 	}
+	
+	public String getEmail() {
+		return email;
+	}
 
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	public boolean isKontaktDatenVorhanden() {
+		status = !(vorname.isEmpty() && nachname.isEmpty() && email.isEmpty()); //Wenn NICHT leer, dann alles ok)
+		return status ;
+	}
+	
+/*
 	{if(nachname.length(0))
 
 	{
@@ -42,6 +56,10 @@ public class Anwender extends Profil {
 		} else g
 		et.Speicher // Vorname & Nachname in Speicher übergeben		
 	}
+	
 }
+*/
+
+	
 }
 

@@ -1,3 +1,4 @@
+package enums;
 import java.awt.Color;
 
 public enum Farbe {
