@@ -1,3 +1,4 @@
+package model;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -10,11 +11,7 @@ public class AnwenderSicherung {
 	private Anwender	anwender;
 	private ObjectOutputStream oos;
 	
-	public AnwenderSicherung () {
-		
-		
-	}
-	
+
 	public void setSicherung(Anwender anwender)
 	{
 		try {
@@ -36,9 +33,10 @@ public class AnwenderSicherung {
 			FileInputStream fis = new FileInputStream ("Team.noice");
 		    ObjectInputStream ois = new ObjectInputStream (fis);
 		    this.anwender = (Anwender) ois.readObject ();
+		    ois.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		return this.anwender;
+		return anwender;
 	}
 }

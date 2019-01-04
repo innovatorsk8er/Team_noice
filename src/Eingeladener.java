@@ -1,3 +1,4 @@
+import model.Profil;
 
 public class Eingeladener extends Profil  {
 
