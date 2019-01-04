@@ -1,21 +1,25 @@
 package model;
 
+import enums.AnwenderStatus;
+
 /**
  * @author Viviane Traber, BWI-A17
  * @since 6.12.18 Anwenderklasse, die beschreibt, welche Eigenschaften ein
  *        Anwender hat.
  */
 public class Anwender extends Profil { 
-	//Anwender email = (Anwender) new Profil();
 	//TerminEinladung einladung = new Anwender();
 	private String nachname;
 	private String vorname;
 	private String email;
+	private AnwenderStatus anwenderStatus;
 	private boolean status;
 
 	public Anwender() {
 		this.nachname = "";
 		this.vorname = "";
+		this.email = "";
+		anwenderStatus = AnwenderStatus.OFFEN_VORNAME;
 	}
 
 	public String getNachname() {
