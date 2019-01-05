@@ -17,6 +17,8 @@ public class Controller {
 	private Model model;
 	private ConsoleView consoleView;
 	private Transaktion transaktion = Transaktion.GESCHLOSSEN;
+	private static String KEIN_ANWENDER_DA = "Tut mir leid - Es konnte kein Profil geladen werden...\nErstelle ein neues Profil:\n\n";
+	private static String ANWENDER_NAME = "Bitte gebe deinen Vornamen ein und Bestätige mit [ENTER]:\n\n";
 	private int welchesMenu = 1;
 	private static int MENU = 6;
 
@@ -73,10 +75,8 @@ public class Controller {
 		if (model.isAnwenderBereit() == AnwenderStatus.EINSATZBEREIT) {
 			consoleView.getTxtArea().setText("Hallo " + model.getAnwender().getVorname()
 					+ " deine Termine sind alle geladen und bereit für dich! :-)" + "\n\n Drücke [ENTER]");
-		} else if (model.isAnwenderBereit() == AnwenderStatus.KEINE_INSTANZ){
+		} else if (model.isAnwenderBereit() == AnwenderStatus.KEINE_INSTANZ) {
 			model.setAnwender();
-			consoleView.getTxtArea().setText("Oje! Es konnte kein Profil für dich geladen werden. :-("
-					+ "\n\nEröffne bitte einen Neuen Account" + "\n\n Drücke [ENTER]");
 		}
 	}
 
@@ -88,7 +88,8 @@ public class Controller {
 					+ "\n5. Exit" + "\n\n", MENU);
 		} else {
 			ttsEnde("");
-			zeigeEntsprechendesMenu(Integer.parseInt(getAnwenderEingabe()));
+			zeigeEntsprechendesMenu(Integer.parseInt(getAnwenderEingabe())); // TODO Abfangen und immer zum Hauptmenu
+																				// führen.
 		}
 
 	}
@@ -121,7 +122,7 @@ public class Controller {
 	}
 
 	private void zeigeEntsprechendesMenu(int welches) throws BadLocationException {
-		System.out.println("Welches Menu: "+welches);
+		System.out.println("Welches Menu: " + welches);
 		Navigation navigation = Navigation.values()[welches];
 
 		switch (navigation) {
@@ -138,7 +139,7 @@ public class Controller {
 
 			break;
 		case SPEICHERN:
-
+			zeigeSpeicherung();
 			break;
 		case EXIT:
 			consoleView.exit();
@@ -151,8 +152,17 @@ public class Controller {
 		}
 	}
 
+	private void zeigeSpeicherung() throws BadLocationException {
+		if (transaktion == Transaktion.GESCHLOSSEN) {
+			model.speichereAnwenderSicherung();
+			ttsAnfang("Speicher-Status: "+model.getAnwenderSicherung().getAnwenderSicherungStatus()+"\n\nBestätige mit [ENTER]", 4);
+		}else {
+			ttsEnde("");
+			zeigeEntsprechendesMenu(MENU);
+		}
+	}
+
 	protected void zeigeBenutzerverwaltung() throws BadLocationException {
-		System.out.println("AnwenderStatus: "+model.getAnwender().getAnwenderStatus());
 		if (model.getAnwender().getAnwenderStatus() == AnwenderStatus.EINSATZBEREIT) {
 			if (transaktion == Transaktion.GESCHLOSSEN) {
 				ttsAnfang("Überprüfe bitte deine Eingaben" + "\nVorname: " + model.getAnwender().getVorname()
@@ -160,18 +170,21 @@ public class Controller {
 						+ model.getAnwender().getEmail() + "\n" + "\nWillst du sie berarbeiten? " + "\n [ENTER] -> JA"
 						+ "\n [DEL] -> NEIN", 1);
 				model.getAnwender().setAnwenderStatus(AnwenderStatus.BEARBEITEN);
-				System.out.println("AnwenderStatus Nachher: "+model.getAnwender().getAnwenderStatus());
 				ttsEnde("");
 			}
 		} else {
-			System.out.println("Bearbeiten: "+model.getAnwender().getAnwenderStatus());
+			System.out.println("Bearbeiten: " + model.getAnwender().getAnwenderStatus());
 			switch (model.getAnwender().getAnwenderStatus()) {
 			case NICHT_EINSATZBEREIT:
 			case BEARBEITEN:
 			case OFFEN_VORNAME:
 				if (transaktion == Transaktion.GESCHLOSSEN) {
-					ttsAnfang("Bitte gebe deinen Vornamen ein und Bestätige mit [ENTER]:\n\n"
-							+ model.getAnwender().getVorname(), 1);
+					if (model.getAnwender().getAnwenderStatus() == AnwenderStatus.NICHT_EINSATZBEREIT) {
+						ttsAnfang(KEIN_ANWENDER_DA + " " + ANWENDER_NAME + model.getAnwender().getVorname(), 1);
+					} else {
+						ttsAnfang(ANWENDER_NAME + model.getAnwender().getVorname(), 1);
+					}
+
 				} else {
 					model.getAnwender().setVorname(getAnwenderEingabe());
 					model.getAnwender().setAnwenderStatus(AnwenderStatus.OFFEN_NAME);
@@ -197,7 +210,7 @@ public class Controller {
 				} else {
 					model.getAnwender().setEmail(getAnwenderEingabe());
 					model.getAnwender().setAnwenderStatus(model.getAnwender().isKontaktDatenVorhanden());
-					//TODO Speicherfunktion hier einbauen!
+					// TODO Speicherfunktion hier einbauen!
 					ttsEnde("Alle Eingaben als Profil gespeichert - Weiter mit [ENTER]");
 				}
 				break;
