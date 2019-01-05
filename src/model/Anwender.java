@@ -19,7 +19,6 @@ public class Anwender extends Profil {
 		this.vorname = "";
 		this.email = "";
 		anwenderStatus = AnwenderStatus.NICHT_EINSATZBEREIT;
-		System.out.println("Neuer Anwender erstellt - Status: "+anwenderStatus);
 	}
 
 	public String getNachname() {
