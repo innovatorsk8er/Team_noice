@@ -1,5 +1,7 @@
 package model;
 
+import java.io.Serializable;
+
 import enums.AnwenderStatus;
 
 public class Model {
@@ -29,10 +31,23 @@ public class Model {
 	}
 
 	public void ladeAnwenderSicherung() {
+		
 		anwenderSicherung = new AnwenderSicherung();
-		anwender = anwenderSicherung.getSicherung();
+		try {
+			anwender = anwenderSicherung.deserialzeModel().getAnwender();
+		} catch (Exception e) {
+			System.out.println("Datei nicht gefunden.");
+		}
 	}
 
+	public void speichereAnwenderSicherung() {
+		anwenderSicherung.serializeModel(this);
+	}
+	
+	public AnwenderSicherung getAnwenderSicherung() {
+		return anwenderSicherung;
+	}
+	
 	public void setAnwender() {
 		anwender = new Anwender();
 	}

@@ -1,42 +1,100 @@
 package model;
+
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 
-public class AnwenderSicherung {
+import enums.AnwenderSicherungStatus;
 
-	private Anwender	anwender;
-	private ObjectOutputStream oos;
-	
+public class AnwenderSicherung implements Serializable {
 
-	public void setSicherung(Anwender anwender)
-	{
-		try {
-			FileOutputStream fos = new FileOutputStream ("Team.noice"); //TODO Pfad ist noch undefiniert.
-			 oos = new ObjectOutputStream (fos);
-			 oos.writeObject (anwender);
-			 
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private final String FILE_NAME_PATH = "c:\\temp\\TerminListe.noice";
+	private AnwenderSicherungStatus anwenderSicherungStatus = AnwenderSicherungStatus.KEIN;
+
+	public String getFileNamePath() {
+		return FILE_NAME_PATH;
 	}
 	
-	public Anwender	getSicherung() {
+	public AnwenderSicherungStatus getAnwenderSicherungStatus() {
+		return anwenderSicherungStatus;
+	}
+
+	public void serializeModel(Model model) {
+		FileOutputStream fout = null;
+		ObjectOutputStream oos = null;
+
 		try {
-			FileInputStream fis = new FileInputStream ("Team.noice");
-		    ObjectInputStream ois = new ObjectInputStream (fis);
-		    this.anwender = (Anwender) ois.readObject ();
-		    ois.close();
-		} catch (Exception e) {
-			// TODO: handle exception
+			fout = new FileOutputStream(FILE_NAME_PATH);
+			oos = new ObjectOutputStream(fout);
+			oos.writeObject(model);
+
+			System.out.println("Done");
+			anwenderSicherungStatus = AnwenderSicherungStatus.SPEICHERN_ERFOLGREICH;
+
+		} catch (Exception ex) {
+
+			ex.printStackTrace();
+			anwenderSicherungStatus = AnwenderSicherungStatus.SPEICHERN_FEHLGESCHLAGEN;
+
+		} finally {
+
+			if (fout != null) {
+				try {
+					fout.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+
+			if (oos != null) {
+				try {
+					oos.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
 		}
-		return anwender;
+	}
+
+	public Model deserialzeModel() {
+		Model model = null;
+
+		FileInputStream fin = null;
+		ObjectInputStream ois = null;
+
+		try {
+			fin = new FileInputStream(FILE_NAME_PATH);
+			ois = new ObjectInputStream(fin);
+			model = (Model) ois.readObject();
+			anwenderSicherungStatus = AnwenderSicherungStatus.LADEN_ERFOLGREICH;
+		} catch (Exception ex) {
+			anwenderSicherungStatus = AnwenderSicherungStatus.LADEN_FEHLGESCHLAGEN;
+			ex.printStackTrace();
+		} finally {
+
+			if (fin != null) {
+				try {
+					fin.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+
+			if (ois != null) {
+				try {
+					ois.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return model;
 	}
 }
