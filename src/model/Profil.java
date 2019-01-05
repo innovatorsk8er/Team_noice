@@ -19,11 +19,10 @@ public class Profil {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	{
+	/*{
 	if(email.contains(domain)){		//warum muss hier {} rein?! 
 		System.out.println("Domain ist korrekt");
 	}
 	else System.out.println("Bitte verwenden Sie eine Student.fh-hwz.ch Adresse.");
-	}
-
+	}*/
 }

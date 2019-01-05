@@ -3,9 +3,8 @@ package model;
 import enums.AnwenderStatus;
 
 public class Model {
-	private Anwender anwender = null;
+	private Anwender anwender;
 	private AnwenderSicherung anwenderSicherung;
-	private AnwenderStatus anwenderStatus;
 
 	public Model() {
 		// Fragen nach neuen Anwender oder laden der Datei
@@ -24,11 +23,9 @@ public class Model {
 
 	public AnwenderStatus isAnwenderBereit() {
 		if (anwender == null) {
-			return anwenderStatus = AnwenderStatus.NICHT_EINSATZBEREIT;
-		} else if (anwender.isKontaktDatenVorhanden()) {
-			return anwenderStatus = AnwenderStatus.EINSATZBEREIT;
+			return AnwenderStatus.NICHT_EINSATZBEREIT;
 		}
-		return anwenderStatus = AnwenderStatus.EINSATZBEREIT;
+		return anwender.isKontaktDatenVorhanden();
 	}
 
 	public void ladeAnwenderSicherung() {
@@ -42,13 +39,5 @@ public class Model {
 
 	public Anwender getAnwender() {
 		return anwender;
-	}
-
-	public AnwenderStatus getAnwenderStatus() {
-		return anwenderStatus;
-	}
-
-	public void setAnwenderStatus(AnwenderStatus status) {
-		anwenderStatus = status;
 	}
 }

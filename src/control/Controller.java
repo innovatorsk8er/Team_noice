@@ -3,8 +3,13 @@ package control;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.sql.rowset.spi.TransactionalWriter;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.Utilities;
+
 import enums.AnwenderStatus;
 import enums.Navigation;
+import enums.Transaktion;
 import model.Model;
 import view.ConsoleView;
 
@@ -13,6 +18,7 @@ public class Controller {
 	private Model model;
 	private ConsoleView consoleView;
 	private Navigation navigation = Navigation.BENUTZER_VORHANDEN;
+	private Transaktion transaktion = Transaktion.GESCHLOSSEN;
 
 	public Controller(Model model, ConsoleView consoleView) {
 		super();
@@ -47,7 +53,12 @@ public class Controller {
 						zeigeMenuliste();
 						break;
 					case BENUTZER_VERWALTEN:
-						zeigeBenutzerverwaltung();
+						try {
+							zeigeBenutzerverwaltung();
+						} catch (BadLocationException e1) {
+							// TODO Auto-generated catch block --> Exception Klasse schreiben
+							e1.printStackTrace();
+						}
 						break;
 					case TERMIN_ERSTELLEN:
 						break;
@@ -66,9 +77,8 @@ public class Controller {
 						zeigeMenuliste();
 						break;
 					case BENUTZER_VERWALTEN:
-						if (model.getAnwenderStatus() == AnwenderStatus.EINSATZBEREIT) {
+						if (model.getAnwender().getAnwenderStatus() == AnwenderStatus.EINSATZBEREIT) {
 							zeigeMenuliste();
-							System.out.println(AnwenderStatus.EINSATZBEREIT);
 						}
 						break;
 					case TERMIN_ERSTELLEN:
@@ -93,27 +103,47 @@ public class Controller {
 		});
 	}
 
-	protected void zeigeBenutzerverwaltung() {
+	protected void zeigeBenutzerverwaltung() throws BadLocationException {
 		if (model.isAnwenderBereit() == AnwenderStatus.EINSATZBEREIT) {
-			consoleView.getTxtArea()
-					.setText("Überprüfe bitte deine Eingaben" + "\nVorname: " + model.getAnwender().getVorname()
-							+ "\nNachname: " + model.getAnwender().getNachname() + "\nE-Mail: "
-							+ model.getAnwender().getEmail() + "\n" + "\nWillst du sie berarbeiten? "
-							+ "\n [ENTER] -> JA" + "\n [DEL] -> NEIN");
+			if (transaktion == Transaktion.GESCHLOSSEN) {
+				ttsAnfang("Überprüfe bitte deine Eingaben" + "\nVorname: " + model.getAnwender().getVorname()
+						+ "\nNachname: " + model.getAnwender().getNachname() + "\nE-Mail: "
+						+ model.getAnwender().getEmail() + "\n" + "\nWillst du sie berarbeiten? "
+						+ "\n [ENTER] -> JA" + "\n [DEL] -> NEIN");
+			}else {
+				model.getAnwender().setVorname(getAnwenderEingabe()); //TODO Bearbeitungsmodus entwickeln.
+				model.getAnwender().setAnwenderStatus(model.getAnwender().isKontaktDatenVorhanden());
+				ttsEnde("Eingabe gespeichert - Weiter mit [ENTER]");
+			}
 		} else {
-			model.setAnwender();
-			switch (model.getAnwenderStatus()) {
-			case OFFEN_NAME:
-				//TODO
-				model.setAnwenderStatus(AnwenderStatus.OFFEN_VORNAME);
+			System.out.println("Zeige Benutzerverwaltung > AnwenderStatus: "+model.getAnwender().getAnwenderStatus());
+			switch (model.getAnwender().getAnwenderStatus()) {
+			case NICHT_EINSATZBEREIT: case OFFEN_VORNAME:
+				if (transaktion == Transaktion.GESCHLOSSEN) {
+					ttsAnfang("Bitte gebe deinen Vornamen ein und Bestätige mit [ENTER]:\n\n");
+				}else {
+					model.getAnwender().setVorname(getAnwenderEingabe());
+					model.getAnwender().setAnwenderStatus(model.getAnwender().isKontaktDatenVorhanden());
+					ttsEnde("Eingabe gespeichert - Weiter mit [ENTER]");
+				}
 				break;
-			case OFFEN_VORNAME:
-				//TODO
-				model.setAnwenderStatus(AnwenderStatus.OFFEN_EMAIL);
+			case OFFEN_NAME:
+				if (transaktion == Transaktion.GESCHLOSSEN) {
+					ttsAnfang("Bitte gebe deinen Nachnamen ein und Bestätige mit [ENTER]:\\n\\n");
+				}else {
+					model.getAnwender().setNachname(getAnwenderEingabe());
+					model.getAnwender().setAnwenderStatus(model.getAnwender().isKontaktDatenVorhanden());
+					ttsEnde("Eingabe gespeichert - Weiter mit [ENTER]");
+				}
 				break;
 			case OFFEN_EMAIL:
-				//TODO
-				model.setAnwenderStatus(AnwenderStatus.EINSATZBEREIT);
+				if (transaktion == Transaktion.GESCHLOSSEN) {
+					ttsAnfang("Bitte gebe deinen E-Mail ein und Bestätige mit [ENTER]:\n\n");
+				}else {
+					model.getAnwender().setEmail(getAnwenderEingabe());
+					model.getAnwender().setAnwenderStatus(model.getAnwender().isKontaktDatenVorhanden());
+					ttsEnde("Eingabe gespeichert - Weiter mit [ENTER]");
+				}
 				break;
 			default:
 				break;
@@ -123,11 +153,13 @@ public class Controller {
 
 	private void kontrolliereBenutzer() {
 		model.ladeAnwenderSicherung();
+		
 		if (model.isAnwenderBereit() == AnwenderStatus.EINSATZBEREIT) {
 			consoleView.getTxtArea().setText("Hallo " + model.getAnwender().getVorname()
 					+ " deine Termine sind alle geladen und bereit für dich! :-)" + "\n\n Drücke [ENTER]");
 			navigation = Navigation.MENU;
 		} else {
+			model.setAnwender();
 			consoleView.getTxtArea().setText("Oje! Es konnte kein Profil für dich geladen werden. :-("
 					+ "\nEröffne bitte einen Neuen Account" + "\n\n Drücke [ENTER]");
 			navigation = Navigation.BENUTZER_VERWALTEN;
@@ -137,5 +169,28 @@ public class Controller {
 	private void zeigeMenuliste() {
 		// TODO Auto-generated method stub
 
+	}
+	private void ttsAnfang(String konsolenInfoAnfang) {
+		transaktion = Transaktion.OFFEN;
+		consoleView.getTxtArea().setText(konsolenInfoAnfang);
+	}
+	private void ttsEnde(String konsolenInfoEnde) {
+		consoleView.getTxtArea().setText(konsolenInfoEnde);
+		transaktion = Transaktion.GESCHLOSSEN;
+	}
+	
+	private String getAnwenderEingabe() throws BadLocationException {
+		int end = consoleView.getTxtArea().getDocument().getLength();
+		int start = Utilities.getRowStart(consoleView.getTxtArea(), end);
+
+		while (start == end)
+		{
+		    end--;
+		    start = Utilities.getRowStart(consoleView.getTxtArea(), end);
+		}
+
+		String text = consoleView.getTxtArea().getText(start, end - start);
+		System.out.println("Antwort Benutzer: " + text);
+		return text;
 	}
 }
