@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextArea;
+import javax.swing.WindowConstants;
 import javax.swing.JButton;
 
 public class ConsoleView extends JFrame {
@@ -63,5 +64,9 @@ public class ConsoleView extends JFrame {
 
 	public void setTxtArea(JTextArea txtArea) {
 		this.txtArea = txtArea;
+	}
+	
+	public void exit() {
+		System.exit(NORMAL);
 	}
 }

@@ -23,9 +23,9 @@ public class Model {
 
 	public AnwenderStatus isAnwenderBereit() {
 		if (anwender == null) {
-			return AnwenderStatus.NICHT_EINSATZBEREIT;
+			return AnwenderStatus.KEINE_INSTANZ;
 		}
-		return anwender.isKontaktDatenVorhanden();
+		return AnwenderStatus.EINSATZBEREIT;
 	}
 
 	public void ladeAnwenderSicherung() {

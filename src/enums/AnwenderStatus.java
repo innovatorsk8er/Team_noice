@@ -1,6 +1,7 @@
 package enums;
 
 public enum AnwenderStatus {
+	KEINE_INSTANZ,
 	NICHT_EINSATZBEREIT,
 	EINSATZBEREIT,
 	OFFEN_NAME,
