@@ -8,7 +8,7 @@ import javax.swing.text.Utilities;
 
 import enums.AnwenderStatus;
 import enums.Navigation;
-import enums.Transaktion;
+import enums.EventStatus;
 import model.Model;
 import view.ConsoleView;
 
@@ -16,7 +16,7 @@ public class Controller {
 
 	private Model model;
 	private ConsoleView consoleView;
-	private Transaktion transaktion = Transaktion.GESCHLOSSEN;
+	private EventStatus eventStatus = EventStatus.GESCHLOSSEN;
 	private static String KEIN_ANWENDER_DA = "Tut mir leid - Es konnte kein Profil geladen werden...\nErstelle ein neues Profil:\n\n";
 	private static String ANWENDER_NAME = "Bitte gebe deinen Vornamen ein und Bestätige mit [ENTER]:\n\n";
 	private int welchesMenu = 1;
@@ -81,7 +81,7 @@ public class Controller {
 	}
 
 	private void zeigeMenuliste() throws NumberFormatException, BadLocationException {
-		if (transaktion == Transaktion.GESCHLOSSEN) {
+		if (eventStatus == EventStatus.GESCHLOSSEN) {
 			ttsAnfang("<--- Willkommen in der Navigation --->"
 					+ "\n\nGib die Nummer ein und Bestätige mit [ENTER] um ins jeweilige Menu reinzukommen\n"
 					+ "\n1. Benutzerverwaltung" + "\n2. Termin erstellen" + "\n3. Terminliste" + "\n4. Speichern"
@@ -95,7 +95,7 @@ public class Controller {
 	}
 
 	private void ttsAnfang(String konsolenInfoAnfang, int welchesMenu) {
-		transaktion = Transaktion.OFFEN;
+		eventStatus = EventStatus.OFFEN;
 		this.welchesMenu = welchesMenu;
 		consoleView.getTxtArea().setText(konsolenInfoAnfang);
 	}
@@ -104,7 +104,7 @@ public class Controller {
 		if (!konsolenInfoEnde.isEmpty()) {
 			consoleView.getTxtArea().setText(konsolenInfoEnde);
 		}
-		transaktion = Transaktion.GESCHLOSSEN;
+		eventStatus = EventStatus.GESCHLOSSEN;
 	}
 
 	private String getAnwenderEingabe() throws BadLocationException {
@@ -153,7 +153,7 @@ public class Controller {
 	}
 
 	private void zeigeSpeicherung() throws BadLocationException {
-		if (transaktion == Transaktion.GESCHLOSSEN) {
+		if (eventStatus == EventStatus.GESCHLOSSEN) {
 			model.speichereAnwenderSicherung();
 			ttsAnfang("Speicher-Status: "+model.getAnwenderSicherung().getAnwenderSicherungStatus()+"\n\nBestätige mit [ENTER]", 4);
 		}else {
@@ -164,7 +164,7 @@ public class Controller {
 
 	protected void zeigeBenutzerverwaltung() throws BadLocationException {
 		if (model.getAnwender().getAnwenderStatus() == AnwenderStatus.EINSATZBEREIT) {
-			if (transaktion == Transaktion.GESCHLOSSEN) {
+			if (eventStatus == EventStatus.GESCHLOSSEN) {
 				ttsAnfang("Überprüfe bitte deine Eingaben" + "\nVorname: " + model.getAnwender().getVorname()
 						+ "\nNachname: " + model.getAnwender().getNachname() + "\nE-Mail: "
 						+ model.getAnwender().getEmail() + "\n" + "\nWillst du sie berarbeiten? " + "\n [ENTER] -> JA"
@@ -178,7 +178,7 @@ public class Controller {
 			case NICHT_EINSATZBEREIT:
 			case BEARBEITEN:
 			case OFFEN_VORNAME:
-				if (transaktion == Transaktion.GESCHLOSSEN) {
+				if (eventStatus == EventStatus.GESCHLOSSEN) {
 					if (model.getAnwender().getAnwenderStatus() == AnwenderStatus.NICHT_EINSATZBEREIT) {
 						ttsAnfang(KEIN_ANWENDER_DA + " " + ANWENDER_NAME + model.getAnwender().getVorname(), 1);
 					} else {
@@ -193,7 +193,7 @@ public class Controller {
 				}
 				break;
 			case OFFEN_NAME:
-				if (transaktion == Transaktion.GESCHLOSSEN) {
+				if (eventStatus == EventStatus.GESCHLOSSEN) {
 					ttsAnfang("Bitte gebe deinen Nachnamen ein und Bestätige mit [ENTER]:\n\n"
 							+ model.getAnwender().getNachname(), 1);
 				} else {
@@ -204,7 +204,7 @@ public class Controller {
 				}
 				break;
 			case OFFEN_EMAIL:
-				if (transaktion == Transaktion.GESCHLOSSEN) {
+				if (eventStatus == EventStatus.GESCHLOSSEN) {
 					ttsAnfang("Bitte gebe deinen E-Mail ein und Bestätige mit [ENTER]:\n\n"
 							+ model.getAnwender().getEmail(), 1);
 				} else {
