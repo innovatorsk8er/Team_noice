@@ -1,10 +1,37 @@
 package enums;
 
 public enum AnwenderSicherungStatus {
-	KEIN,
-	SPEICHERN_ERFOLGREICH,
-	SPEICHERN_FEHLGESCHLAGEN,
-	LADEN_ERFOLGREICH,
-	LADEN_FEHLGESCHLAGEN
+	KEIN {
+		@Override
+		public String getAnwenderSicherungsStatus() {
+			return "Keine Sicherung geladen.";
+		}
+	},
+	SPEICHERN_ERFOLGREICH {
+		@Override
+		public String getAnwenderSicherungsStatus() {
+			return "Profil speichern, war erfolgreich!";
+		}
+	},
+	SPEICHERN_FEHLGESCHLAGEN {
+		@Override
+		public String getAnwenderSicherungsStatus() {
+			return "Profil speichern, ist fehlgeschlagen!";
+		}
+	},
+	LADEN_ERFOLGREICH {
+		@Override
+		public String getAnwenderSicherungsStatus() {
+			return "Profil laden, war erfolgreich!";
+		}
+	},
+	LADEN_FEHLGESCHLAGEN {
+		@Override
+		public String getAnwenderSicherungsStatus() {
+			return "Profil laden, ist fehlgeschlagen!";
+		}
+	};
+
+	public abstract String getAnwenderSicherungsStatus();
 
 }

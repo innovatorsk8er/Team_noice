@@ -1,8 +1,5 @@
 package model;
 
-import java.io.Serializable;
-
-import enums.AnwenderStatus;
 
 public class Model {
 	private Anwender anwender;
@@ -10,38 +7,29 @@ public class Model {
 
 	public Model() {
 		// Fragen nach neuen Anwender oder laden der Datei
-
+		anwender = new Anwender();
+		anwenderSicherung = new AnwenderSicherung();
 		// wenn neuer Anwender, dann Profil erstellen
 	}
 
-	public String setWillkommenTxt() {
-		return "< ---- Willkommen 'mir' noch unbekannter Benutzer! ---- >"
-				+ "\nBitte Drücke [Return] für vorhanden Benutzer laden" + "\noder [Enter] für neuen Benutzer";
+	public String getWillkommenTxt() {
+		return "Willkommen 'mir' noch unbekannter Benutzer!"
+				+ " Bitte lade das Profil";
 	}
 
-	public String setBenutzerVerwaltungTxt() {
-		return "< ---- BENUTZER VERWALTUNG ---- >";
-	}
-
-	public AnwenderStatus isAnwenderBereit() {
-		if (anwender == null) {
-			return AnwenderStatus.KEINE_INSTANZ;
-		}
-		return AnwenderStatus.EINSATZBEREIT;
+	public String getKeineZukuenftigeTermine() {
+		return "Keine k\u00FCnftige Termine momentan vorhanden";
 	}
 
 	public void ladeAnwenderSicherung() {
-		
-		anwenderSicherung = new AnwenderSicherung();
-		try {
-			anwender = anwenderSicherung.deserialzeModel().getAnwender();
-		} catch (Exception e) {
-			System.out.println("Datei nicht gefunden.");
+		anwender = anwenderSicherung.deserialzeModel();
+		if (anwender == null) {
+			anwender = new Anwender();
 		}
 	}
 
 	public void speichereAnwenderSicherung() {
-		anwenderSicherung.serializeModel(this);
+		anwenderSicherung.serializeModel(anwender);
 	}
 	
 	public AnwenderSicherung getAnwenderSicherung() {
