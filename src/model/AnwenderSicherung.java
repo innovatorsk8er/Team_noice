@@ -26,14 +26,14 @@ public class AnwenderSicherung implements Serializable {
 		return anwenderSicherungStatus;
 	}
 
-	public void serializeModel(Model model) {
+	public void serializeModel(Anwender anwender) {
 		FileOutputStream fout = null;
 		ObjectOutputStream oos = null;
 
 		try {
 			fout = new FileOutputStream(FILE_NAME_PATH);
 			oos = new ObjectOutputStream(fout);
-			oos.writeObject(model);
+			oos.writeObject(anwender);
 
 			System.out.println("Done");
 			anwenderSicherungStatus = AnwenderSicherungStatus.SPEICHERN_ERFOLGREICH;
@@ -63,8 +63,8 @@ public class AnwenderSicherung implements Serializable {
 		}
 	}
 
-	public Model deserialzeModel() {
-		Model model = null;
+	public Anwender deserialzeModel() {
+		Anwender anwender = null;
 
 		FileInputStream fin = null;
 		ObjectInputStream ois = null;
@@ -72,7 +72,7 @@ public class AnwenderSicherung implements Serializable {
 		try {
 			fin = new FileInputStream(FILE_NAME_PATH);
 			ois = new ObjectInputStream(fin);
-			model = (Model) ois.readObject();
+			anwender = (Anwender) ois.readObject();
 			anwenderSicherungStatus = AnwenderSicherungStatus.LADEN_ERFOLGREICH;
 		} catch (Exception ex) {
 			anwenderSicherungStatus = AnwenderSicherungStatus.LADEN_FEHLGESCHLAGEN;
@@ -95,6 +95,6 @@ public class AnwenderSicherung implements Serializable {
 				}
 			}
 		}
-		return model;
+		return anwender;
 	}
 }
