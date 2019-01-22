@@ -1,4 +1,10 @@
 package enums;
+/**
+ * 
+ * @author Alessio Crincoli
+ * Status der GUI Navigation
+ *
+ */
 
 public enum NavationStatus {
 	KOMPLETT {

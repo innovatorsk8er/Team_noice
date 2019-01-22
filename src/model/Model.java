@@ -1,5 +1,8 @@
 package model;
-
+/**
+ * @author Fatma Gediz
+ * GUI-Anweisungen für den User 
+ */
 
 public class Model {
 	private Anwender anwender;

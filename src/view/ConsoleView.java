@@ -1,4 +1,8 @@
 package view;
+/**
+ * @author Ernesto Escalier
+ * GUI; Benutzeroberfläche unserer TerminListe
+ */
 
 import java.awt.BorderLayout;
 import javax.swing.JFrame;

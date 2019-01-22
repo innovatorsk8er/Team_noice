@@ -1,5 +1,10 @@
 package enums;
-
+/**
+ * 
+ * @author Fatma Gediz
+ * Enumerations für den Status den ein Termin annehmen kann
+ *
+ */
 public enum TerminErstellenStatus {
 	ERSTELLEN,
 	TITEL,

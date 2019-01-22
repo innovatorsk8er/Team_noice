@@ -44,15 +44,15 @@ public class Termin {
 		this.endDatum=datum;
 	}
 	
-	public Datum getendDatum () {
+	public Datum getEndDatum () {
 		return endDatum;
 	}
 	
-	public void setendZeit (Zeit zeit) {
+	public void setEndZeit (Zeit zeit) {
 		this.endZeit=zeit;
 	}
 	
-	public Zeit getendZeit () {
+	public Zeit getEndZeit () {
 		return endZeit;
 	}
 

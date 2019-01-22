@@ -1,4 +1,11 @@
 package enums;
+/**
+ * 
+ * @author Viviane Traber
+ * Enumerations für den Status der Anwendersicherung.
+ * Rückgabewerte fürs GUI
+ *
+ */
 
 public enum AnwenderSicherungStatus {
 	KEIN {
@@ -10,7 +17,7 @@ public enum AnwenderSicherungStatus {
 	SPEICHERN_ERFOLGREICH {
 		@Override
 		public String getAnwenderSicherungsStatus() {
-			return "Profil speichern, war erfolgreich!";
+			return "Profil speichern, war erfolgreich. Noice!";
 		}
 	},
 	SPEICHERN_FEHLGESCHLAGEN {
@@ -22,7 +29,7 @@ public enum AnwenderSicherungStatus {
 	LADEN_ERFOLGREICH {
 		@Override
 		public String getAnwenderSicherungsStatus() {
-			return "Profil laden, war erfolgreich!";
+			return "Profil laden, war erfolgreich. Noice!";
 		}
 	},
 	LADEN_FEHLGESCHLAGEN {

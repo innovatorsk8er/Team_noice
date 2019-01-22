@@ -8,12 +8,13 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 import enums.AnwenderSicherungStatus;
-
+/**
+ * @author Ernesto Escalier
+ * Sicherungsmechanismus des Anwenderprofils. 
+ */
 public class AnwenderSicherung implements Serializable {
 
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	private final String FILE_NAME_PATH = "c:\\temp\\TerminListe.noice";
 	private AnwenderSicherungStatus anwenderSicherungStatus = AnwenderSicherungStatus.KEIN;

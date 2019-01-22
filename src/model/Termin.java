@@ -1,5 +1,8 @@
 package model;
-
+/**
+ * @author Fatma Gediz
+ * Terminklasse, für Terminerstellung inkl. allen Optionen
+ */
 public class Termin {
 	private String titel;
 	/*

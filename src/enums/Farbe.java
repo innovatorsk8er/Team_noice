@@ -1,5 +1,11 @@
 package enums;
 import java.awt.Color;
+/**
+ * 
+ * @author Alessio Crincoli
+ * Enums für die Status-Farben der Termine
+ *
+ */
 
 public enum Farbe {
 
@@ -33,7 +39,7 @@ public enum Farbe {
     }
 
     public int getBlue(){
-        return r;
+        return b;
     }
 
     //Or even these

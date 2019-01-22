@@ -4,7 +4,10 @@ import java.awt.Font;
 import enums.AnwenderStatus;
 import model.Model;
 import view.ConsoleView;
-
+/**
+ * @author Ernesto Escalier
+ * 
+ */
 public class Controller {
 
 	private Model model;

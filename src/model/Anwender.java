@@ -5,10 +5,11 @@ import java.io.Serializable;
 import enums.AnwenderStatus;
 
 /**
- * @author Viviane Traber, BWI-A17
- * @since 6.12.18 Anwenderklasse, die beschreibt, welche Eigenschaften ein
- *        Anwender hat.
+ * @author Viviane Traber
+ * Anwenderklasse, die beschreibt, welche Eigenschaften ein Anwender hat.
+ * Ergänzungen des Profils/Profildaten
  */
+
 public class Anwender extends Profil implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private String nachname;

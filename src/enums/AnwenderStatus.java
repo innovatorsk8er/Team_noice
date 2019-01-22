@@ -1,5 +1,11 @@
 package enums;
-
+/**
+ * 
+ * @author Viviane Traber
+ * Enumerations für den Status in dem sich der Anwender befindet. 
+ * Rückgabewerte fürs GUI
+ *
+ */
 public enum AnwenderStatus {
 
 	NICHT_EINSATZBEREIT {
