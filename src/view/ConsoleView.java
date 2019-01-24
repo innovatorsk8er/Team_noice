@@ -5,7 +5,6 @@ package view;
  */
 
 import java.awt.BorderLayout;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -14,16 +13,19 @@ import java.awt.GridBagLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSpinner;
 import javax.swing.border.EmptyBorder;
 
 import enums.Navigation;
 
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
+import javax.swing.SpinnerModel;
 import javax.swing.JList;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 
 public class ConsoleView extends JFrame {
 
@@ -49,6 +51,8 @@ public class ConsoleView extends JFrame {
 	private JButton jbtnTabNeuerTerminSchliessen = new JButton("[X]");
 	private JButton jbtnTabBearbeteTerminSchliessen = new JButton("[X]");
 	private JPanel bearbeiteTerminPanel;
+	private JTextField txtTerminTitel;
+	private JPanel vonDatum;
 
 	/**
 	 * Create the frame.
@@ -68,7 +72,7 @@ public class ConsoleView extends JFrame {
 	}
 	
 	public void initNeuerTermin() {
-		//Tab-Close Button
+		//Tab-Header-Bereich
 		jbtnTabNeuerTerminSchliessen.setOpaque(false);
 		jbtnTabNeuerTerminSchliessen.setContentAreaFilled(false);
 		jbtnTabNeuerTerminSchliessen.setPreferredSize(new Dimension(45, 15));
@@ -96,37 +100,20 @@ public class ConsoleView extends JFrame {
 		int tabNeuIndex = tabbedPane.indexOfTab(titel);
 		tabbedPane.setTabComponentAt(tabNeuIndex, pnlTab);
 		tabbedPane.setSelectedIndex(tabNeuIndex);
-		// Neuer Termin erstellen Ansicht
+		
+		// Tab-Body
 		neuerTerminPanel.setLayout(null);
-		// Vorname
-		/*neuerTerminPanel = new JLabel("Vorname:");
-		neuerTerminPanel.setBounds(65, 20, 90, 40);
-		profilPane.add(lblVorname);
-		txtVorname = new JTextField();
-		txtVorname.setBounds(168, 20, 190, 40);
-		profilPane.add(txtVorname);
-		// Nachname
-		lblNachname = new JLabel("Nachname:");
-		lblNachname.setBounds(65, 70, 90, 40);
-		profilPane.add(lblNachname);
-		txtNachname = new JTextField();
-		txtNachname.setBounds(168, 70, 190, 40);
-		profilPane.add(txtNachname);
-		// Mail
-		lblMail = new JLabel("E-Mail");
-		lblMail.setBounds(65, 120, 90, 40);
-		profilPane.add(lblMail);
-		txtMail = new JTextField();
-		txtMail.setBounds(168, 120, 190, 40);
-		profilPane.add(txtMail);
-		// Button Bereich
-		jbtnProfilspeichern = new JButton("Speichern");
-		jbtnProfilspeichern.setBounds(168, 170, 190, 30);
-		profilPane.add(jbtnProfilspeichern);
-		// Button Bereich
-		jbtnProfilLaden = new JButton("Laden");
-		jbtnProfilLaden.setBounds(168, 220, 190, 30);*/
-		//profilPane.add(jbtnProfilLaden);
+		//Titel
+		JLabel lblTerminTitel = new JLabel("Titel:");
+		lblTerminTitel.setBounds(65, 20, 90, 40);
+		neuerTerminPanel.add(lblTerminTitel);
+		txtTerminTitel = new JTextField();
+		txtTerminTitel.setBounds(168, 20, 190, 40);
+		neuerTerminPanel.add(txtTerminTitel);
+		//Von-Datum
+		vonDatum = new PanelDatumAuswahl("Von-Datum");
+		vonDatum.setBounds(65, 70, 500, 40);
+		neuerTerminPanel.add(vonDatum);
 	}
 
 	public void initBearbeiteTermin() {
