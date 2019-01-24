@@ -1,6 +1,5 @@
 package control;
 
-import java.awt.Component;
 import java.awt.Font;
 import enums.AnwenderStatus;
 import model.Model;
@@ -48,7 +47,7 @@ public class Controller {
 	}
 	
 	private void neuerTerminSchliessen() {
-		consoleView.getTabbedPane().remove(consoleView.getTabNeuIndex());
+		consoleView.getTabbedPane().remove(consoleView.getPanelNeuerTermin());
 		consoleView.getJbtnNeuerTermin().setEnabled(true);
 	}
 
@@ -58,8 +57,9 @@ public class Controller {
 	}
 
 	private void bearbeiteTerminSchliessen() {
-		consoleView.getTabbedPane().remove(consoleView.getTabBearbeiteIndex());
+		consoleView.getTabbedPane().remove(consoleView.getPanelTerminBearbeiten());
 		consoleView.getJbtnTerminBearbeiten().setEnabled(true);
+		
 	}
 	
 	private void speichereProfil() {
