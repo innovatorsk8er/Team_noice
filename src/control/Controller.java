@@ -1,5 +1,6 @@
 package control;
 
+import java.awt.Component;
 import java.awt.Font;
 import enums.AnwenderStatus;
 import model.Model;
@@ -35,18 +36,32 @@ public class Controller {
 	public void initController() {
 		consoleView.getJbtnProfilLaden().addActionListener(e -> ladeProfil());
 		consoleView.getJbtnProfilspeichern().addActionListener(e -> speichereProfil());
-		consoleView.getJbtnTerminBearbeiten().addActionListener(e -> bearbeiteTermin());
 		consoleView.getJbtnNeuerTermin().addActionListener(e -> neuerTermin());
+		consoleView.getJbtnTabNeuerTerminSchliessen().addActionListener(e -> neuerTerminSchliessen());
+		consoleView.getJbtnTerminBearbeiten().addActionListener(e -> bearbeiteTermin());
+		consoleView.getJbtnTabBearbeteTerminSchliessen().addActionListener(e -> bearbeiteTerminSchliessen());
 	}
 
 	private void neuerTermin() {
-		// TODO Auto-generated method stub
+		consoleView.initNeuerTermin();
+		consoleView.getJbtnNeuerTermin().setEnabled(false);
+	}
+	
+	private void neuerTerminSchliessen() {
+		consoleView.getTabbedPane().remove(consoleView.getTabNeuIndex());
+		consoleView.getJbtnNeuerTermin().setEnabled(true);
 	}
 
 	private void bearbeiteTermin() {
-		// TODO Auto-generated method stub
+		consoleView.initBearbeiteTermin();
+		consoleView.getJbtnTerminBearbeiten().setEnabled(false);
 	}
 
+	private void bearbeiteTerminSchliessen() {
+		consoleView.getTabbedPane().remove(consoleView.getTabBearbeiteIndex());
+		consoleView.getJbtnTerminBearbeiten().setEnabled(true);
+	}
+	
 	private void speichereProfil() {
 		if (consoleView.getTxtVorname().getText().equals("")) {
 			consoleView.getLblStatus().setText(AnwenderStatus.OFFEN_VORNAME.getAnwenderStatus());
