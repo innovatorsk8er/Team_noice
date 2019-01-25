@@ -1,6 +1,7 @@
 
 
 public class Reminder { 
+	/*
 	private Zeit reminderZeit;
 	private Datum reminderDatum;
 	

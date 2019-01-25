@@ -4,8 +4,8 @@ public class Termin {
 	private String titel;
 	private Datum startDatum;
 	private Datum endDatum;
-	private Zeit startZeit;
-	private Zeit endZeit;
+	private Calendar startZeit;
+	private Calendar endZeit;
 	private String ort;
 	private Farbe statusFarbe;
 
@@ -25,11 +25,11 @@ public class Termin {
 		return startDatum;
 	}
 
-	public void setStartZeit(Zeit zeit) {
+	public void setStartZeit(Calendar zeit) {
 		this.startZeit = zeit;
 	}
 
-	public Zeit getStartZeit() {
+	public Calendar getStartZeit() {
 		return startZeit;
 	}
 
@@ -41,11 +41,11 @@ public class Termin {
 		return endDatum;
 	}
 
-	public void setEndZeit(Zeit zeit) {
+	public void setEndZeit(Calendar zeit) {
 		this.endZeit = zeit;
 	}
 
-	public Zeit getEndZeit() {
+	public Calendar getEndZeit() {
 		return endZeit;
 	}
 
