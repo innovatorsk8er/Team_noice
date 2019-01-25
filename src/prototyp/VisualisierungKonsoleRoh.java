@@ -1,3 +1,4 @@
+package prototyp;
 import java.awt.Color;
 /**
  * 
