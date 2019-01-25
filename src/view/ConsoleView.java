@@ -17,14 +17,19 @@ import javax.swing.JSpinner;
 import javax.swing.border.EmptyBorder;
 
 import enums.Navigation;
+import enums.WiederkehrendeTermine;
 
 import javax.swing.JTabbedPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpinnerModel;
 import javax.swing.JList;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
 
 public class ConsoleView extends JFrame {
@@ -52,7 +57,13 @@ public class ConsoleView extends JFrame {
 	private JButton jbtnTabBearbeteTerminSchliessen = new JButton("[X]");
 	private JPanel bearbeiteTerminPanel;
 	private JTextField txtTerminTitel;
+	private JTextField txtTerminOrt;
 	private JPanel vonDatum;
+	private JPanel bisDatum;
+	private JComboBox<WiederkehrendeTermine> jComboBoxWTermine;
+	private JCheckBox checkBoxReminder;
+	private JTextArea jTextAreaEinladungen;
+	private JButton jbtnTerminspeichern;
 
 	/**
 	 * Create the frame.
@@ -68,11 +79,12 @@ public class ConsoleView extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		initMainContent();
+		setResizable(false);
 		setVisible(true);
 	}
-	
+
 	public void initNeuerTermin() {
-		//Tab-Header-Bereich
+		// Tab-Header-Bereich
 		jbtnTabNeuerTerminSchliessen.setOpaque(false);
 		jbtnTabNeuerTerminSchliessen.setContentAreaFilled(false);
 		jbtnTabNeuerTerminSchliessen.setPreferredSize(new Dimension(45, 15));
@@ -80,44 +92,81 @@ public class ConsoleView extends JFrame {
 		String titel = Navigation.NEUER_TERMIN.getString();
 		neuerTerminPanel = new JPanel();
 		neuerTerminPanel.setName(Navigation.NEUER_TERMIN.getString());
-		
+
 		JPanel pnlTab = new JPanel(new GridBagLayout());
 		pnlTab.setOpaque(false);
 		JLabel lblTitle = new JLabel(titel);
-		
+
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		gbc.weightx = 0;
-		
+
 		pnlTab.add(lblTitle, gbc);
 
 		gbc.gridx++;
 		gbc.weightx = 0;
 		pnlTab.add(jbtnTabNeuerTerminSchliessen, gbc);
-		
+
 		tabbedPane.addTab(titel, null, neuerTerminPanel, "Erstelle hier ein neuen Termin");
 		int tabNeuIndex = tabbedPane.indexOfTab(titel);
 		tabbedPane.setTabComponentAt(tabNeuIndex, pnlTab);
 		tabbedPane.setSelectedIndex(tabNeuIndex);
-		
+
 		// Tab-Body
 		neuerTerminPanel.setLayout(null);
-		//Titel
+		// Titel
 		JLabel lblTerminTitel = new JLabel("Titel:");
 		lblTerminTitel.setBounds(65, 20, 90, 40);
 		neuerTerminPanel.add(lblTerminTitel);
 		txtTerminTitel = new JTextField();
-		txtTerminTitel.setBounds(168, 20, 190, 40);
+		txtTerminTitel.setBounds(168, 20, 455, 40);
 		neuerTerminPanel.add(txtTerminTitel);
-		//Von-Datum
+		// Ort
+		JLabel lblTerminOrt = new JLabel("Ort:");
+		lblTerminOrt.setBounds(65, 70, 90, 40);
+		neuerTerminPanel.add(lblTerminOrt);
+		txtTerminOrt = new JTextField();
+		txtTerminOrt.setBounds(168, 70, 455, 40);
+		neuerTerminPanel.add(txtTerminOrt);
+		// Von-Datum
 		vonDatum = new PanelDatumAuswahl("Von-Datum");
-		vonDatum.setBounds(65, 70, 500, 40);
+		vonDatum.setBounds(65, 120, 260, 40);
 		neuerTerminPanel.add(vonDatum);
+		// Bis-Datum
+		bisDatum = new PanelDatumAuswahl("Bis-Datum");
+		bisDatum.setBounds(370, 120, 500, 40);
+		neuerTerminPanel.add(bisDatum);
+		// Wiederkehrende Termine
+		JLabel lblTerminWk = new JLabel("Wiederkehrend:");
+		lblTerminWk.setBounds(65, 170, 90, 40);
+		neuerTerminPanel.add(lblTerminWk);
+		jComboBoxWTermine = new JComboBox<WiederkehrendeTermine>();
+		jComboBoxWTermine.setModel(new DefaultComboBoxModel<WiederkehrendeTermine>(WiederkehrendeTermine.values()));
+		jComboBoxWTermine.setBounds(168, 170, 150, 40);
+		neuerTerminPanel.add(jComboBoxWTermine);
+		// Reminder
+		JLabel lblTerminReminder = new JLabel("Reminder:");
+		lblTerminReminder.setBounds(65, 220, 90, 40);
+		neuerTerminPanel.add(lblTerminReminder);
+		checkBoxReminder = new JCheckBox();
+		checkBoxReminder.setBounds(168, 220, 150, 40);
+		neuerTerminPanel.add(checkBoxReminder);
+		// Personen Einladen
+		JLabel lblTerminEinladung = new JLabel("Einladen:");
+		lblTerminEinladung.setBounds(65, 270, 90, 40);
+		neuerTerminPanel.add(lblTerminEinladung);
+		jTextAreaEinladungen = new JTextArea();
+		jTextAreaEinladungen.setBounds(168, 270, 455, 80);
+		neuerTerminPanel.add(jTextAreaEinladungen);
+		// Termin Speichern
+		jbtnTerminspeichern = new JButton(Navigation.SPEICHERN.getString());
+		jbtnTerminspeichern.setBounds(65, 370, 90, 30);
+		neuerTerminPanel.add(jbtnTerminspeichern);
 	}
 
 	public void initBearbeiteTermin() {
-		//Tab-Close Button
+		// Tab-Close Button
 		jbtnTabBearbeteTerminSchliessen.setOpaque(false);
 		jbtnTabBearbeteTerminSchliessen.setContentAreaFilled(false);
 		jbtnTabBearbeteTerminSchliessen.setPreferredSize(new Dimension(45, 15));
@@ -125,60 +174,47 @@ public class ConsoleView extends JFrame {
 		String titel = Navigation.TERMIN_BEARBEITEN.getString();
 		bearbeiteTerminPanel = new JPanel();
 		bearbeiteTerminPanel.setName(Navigation.TERMIN_BEARBEITEN.getString());
-		
+
 		JPanel pnlTab = new JPanel(new GridBagLayout());
 		pnlTab.setOpaque(false);
 		JLabel lblTitle = new JLabel(titel);
-		
+
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		gbc.weightx = 0;
-		
+
 		pnlTab.add(lblTitle, gbc);
 
 		gbc.gridx++;
 		gbc.weightx = 0;
 		pnlTab.add(jbtnTabBearbeteTerminSchliessen, gbc);
-		
+
 		tabbedPane.addTab(titel, null, bearbeiteTerminPanel, "Termin wird bearbeitet");
-		
+
 		int tabBearbeiteIndex = tabbedPane.indexOfTab(titel);
 		tabbedPane.setTabComponentAt(tabBearbeiteIndex, pnlTab);
 		tabbedPane.setSelectedIndex(tabBearbeiteIndex);
 		// Neuer Termin erstellen Ansicht
 		bearbeiteTerminPanel.setLayout(null);
 		// Vorname
-		/*neuerTerminPanel = new JLabel("Vorname:");
-		neuerTerminPanel.setBounds(65, 20, 90, 40);
-		profilPane.add(lblVorname);
-		txtVorname = new JTextField();
-		txtVorname.setBounds(168, 20, 190, 40);
-		profilPane.add(txtVorname);
-		// Nachname
-		lblNachname = new JLabel("Nachname:");
-		lblNachname.setBounds(65, 70, 90, 40);
-		profilPane.add(lblNachname);
-		txtNachname = new JTextField();
-		txtNachname.setBounds(168, 70, 190, 40);
-		profilPane.add(txtNachname);
-		// Mail
-		lblMail = new JLabel("E-Mail");
-		lblMail.setBounds(65, 120, 90, 40);
-		profilPane.add(lblMail);
-		txtMail = new JTextField();
-		txtMail.setBounds(168, 120, 190, 40);
-		profilPane.add(txtMail);
-		// Button Bereich
-		jbtnProfilspeichern = new JButton("Speichern");
-		jbtnProfilspeichern.setBounds(168, 170, 190, 30);
-		profilPane.add(jbtnProfilspeichern);
-		// Button Bereich
-		jbtnProfilLaden = new JButton("Laden");
-		jbtnProfilLaden.setBounds(168, 220, 190, 30);*/
-		//profilPane.add(jbtnProfilLaden);
+		/*
+		 * neuerTerminPanel = new JLabel("Vorname:"); neuerTerminPanel.setBounds(65, 20,
+		 * 90, 40); profilPane.add(lblVorname); txtVorname = new JTextField();
+		 * txtVorname.setBounds(168, 20, 190, 40); profilPane.add(txtVorname); //
+		 * Nachname lblNachname = new JLabel("Nachname:"); lblNachname.setBounds(65, 70,
+		 * 90, 40); profilPane.add(lblNachname); txtNachname = new JTextField();
+		 * txtNachname.setBounds(168, 70, 190, 40); profilPane.add(txtNachname); // Mail
+		 * lblMail = new JLabel("E-Mail"); lblMail.setBounds(65, 120, 90, 40);
+		 * profilPane.add(lblMail); txtMail = new JTextField(); txtMail.setBounds(168,
+		 * 120, 190, 40); profilPane.add(txtMail); // Button Bereich jbtnProfilspeichern
+		 * = new JButton("Speichern"); jbtnProfilspeichern.setBounds(168, 170, 190, 30);
+		 * profilPane.add(jbtnProfilspeichern); // Button Bereich jbtnProfilLaden = new
+		 * JButton("Laden"); jbtnProfilLaden.setBounds(168, 220, 190, 30);
+		 */
+		// profilPane.add(jbtnProfilLaden);
 	}
-	
+
 	private void initTermineListePane() {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setViewportView(terminListe);
@@ -323,11 +359,11 @@ public class ConsoleView extends JFrame {
 	public JButton getJbtnTabBearbeteTerminSchliessen() {
 		return jbtnTabBearbeteTerminSchliessen;
 	}
-	
+
 	public JPanel getPanelTerminBearbeiten() {
 		return bearbeiteTerminPanel;
 	}
-	
+
 	public JPanel getPanelNeuerTermin() {
 		return neuerTerminPanel;
 	}
