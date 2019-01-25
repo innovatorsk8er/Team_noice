@@ -24,8 +24,9 @@ public class Reminder {
 		return reminderDatum;
 	}
 	
-
+/*
 	public void setMinutenReminder (Zeit minuten) {
+		
 		z.minute=minuten;
 		this.reminderZeit = t.getStartZeit() - minuten;
 		reminderDatum = if reminderZeit ();
@@ -53,5 +54,5 @@ public class Reminder {
 	public void sendEmail(String eMail) {
 
 	}
-
+*/
 }

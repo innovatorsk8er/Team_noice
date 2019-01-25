@@ -9,20 +9,15 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JSpinner;
 import javax.swing.border.EmptyBorder;
-
 import enums.Navigation;
 import enums.WiederkehrendeTermine;
-
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.SpinnerModel;
 import javax.swing.JList;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -30,7 +25,6 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
-import javax.swing.JComponent;
 
 public class ConsoleView extends JFrame {
 
@@ -158,6 +152,7 @@ public class ConsoleView extends JFrame {
 		neuerTerminPanel.add(lblTerminEinladung);
 		jTextAreaEinladungen = new JTextArea();
 		jTextAreaEinladungen.setBounds(168, 270, 455, 80);
+		jTextAreaEinladungen.setLineWrap(true);
 		neuerTerminPanel.add(jTextAreaEinladungen);
 		// Termin Speichern
 		jbtnTerminspeichern = new JButton(Navigation.SPEICHERN.getString());
