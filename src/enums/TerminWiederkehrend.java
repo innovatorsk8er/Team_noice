@@ -1,6 +1,6 @@
 package enums;
 
-public enum WiederkehrendeTermine {
+public enum TerminWiederkehrend {
 	NEIN("Nein",0),
 	TAEGLICH("T\u00e4glich", 1), 
 	WOECHENTLICH("W\u00f6chentlich", 7), 
@@ -10,7 +10,7 @@ public enum WiederkehrendeTermine {
     private final String anzeigen;
     private final int tage;
     
-    private WiederkehrendeTermine(String string, int zahl) {
+    private TerminWiederkehrend(String string, int zahl) {
         anzeigen = string;
         tage = zahl;
     }

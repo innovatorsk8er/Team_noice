@@ -2,12 +2,12 @@ import enums.Farbe;
 
 public class Termin {
 	private String titel;
-	private Datum startDatum;
-	private Datum endDatum;
-	private Calendar startZeit;
-	private Calendar endZeit;
+	private Calendar startDatumZeit;
+	private Calendar endDatumZeit;
 	private String ort;
 	private Farbe statusFarbe;
+	private boolean reminder;
+	private String einladungen;
 
 	public void setTitel(String titel) {
 		this.titel = titel;
@@ -17,36 +17,20 @@ public class Termin {
 		return titel;
 	}
 
-	public void setStartDatum(Datum datum) {
-		this.startDatum = datum;
-	}
-
-	public Datum getStartDatum() {
-		return startDatum;
-	}
-
 	public void setStartZeit(Calendar zeit) {
-		this.startZeit = zeit;
+		this.startDatumZeit = zeit;
 	}
 
-	public Calendar getStartZeit() {
-		return startZeit;
-	}
-
-	public void setEndDatum(Datum datum) {
-		this.endDatum = datum;
-	}
-
-	public Datum getEndDatum() {
-		return endDatum;
+	public Calendar getStartDatumZeit() {
+		return startDatumZeit;
 	}
 
 	public void setEndZeit(Calendar zeit) {
-		this.endZeit = zeit;
+		this.endDatumZeit = zeit;
 	}
 
-	public Calendar getEndZeit() {
-		return endZeit;
+	public Calendar getEndDatumZeit() {
+		return endDatumZeit;
 	}
 
 	public String getOrt() {
@@ -64,4 +48,21 @@ public class Termin {
 	public void setStatusFarbe(Farbe statusFarbe) {
 		this.statusFarbe = statusFarbe;
 	}
+
+	public boolean isReminder() {
+		return reminder;
+	}
+
+	public void setReminder(boolean reminder) {
+		this.reminder = reminder;
+	}
+
+	public String getEinladungen() {
+		return einladungen;
+	}
+
+	public void setEinladungen(String einladungen) {
+		this.einladungen = einladungen;
+	}
+	
 }

@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import enums.Navigation;
-import enums.WiederkehrendeTermine;
+import enums.TerminWiederkehrend;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -54,7 +54,7 @@ public class ConsoleView extends JFrame {
 	private JTextField txtTerminOrt;
 	private JPanel vonDatum;
 	private JPanel bisDatum;
-	private JComboBox<WiederkehrendeTermine> jComboBoxWTermine;
+	private JComboBox<TerminWiederkehrend> jComboBoxWTermine;
 	private JCheckBox checkBoxReminder;
 	private JTextArea jTextAreaEinladungen;
 	private JButton jbtnTerminspeichern;
@@ -135,8 +135,8 @@ public class ConsoleView extends JFrame {
 		JLabel lblTerminWk = new JLabel("Wiederkehrend:");
 		lblTerminWk.setBounds(65, 170, 90, 40);
 		neuerTerminPanel.add(lblTerminWk);
-		jComboBoxWTermine = new JComboBox<WiederkehrendeTermine>();
-		jComboBoxWTermine.setModel(new DefaultComboBoxModel<WiederkehrendeTermine>(WiederkehrendeTermine.values()));
+		jComboBoxWTermine = new JComboBox<TerminWiederkehrend>();
+		jComboBoxWTermine.setModel(new DefaultComboBoxModel<TerminWiederkehrend>(TerminWiederkehrend.values()));
 		jComboBoxWTermine.setBounds(168, 170, 150, 40);
 		neuerTerminPanel.add(jComboBoxWTermine);
 		// Reminder
