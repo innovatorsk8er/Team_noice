@@ -1,4 +1,5 @@
 package enums;
+
 /**
  * 
  * @author Fatma Gediz
@@ -6,13 +7,58 @@ package enums;
  *
  */
 public enum TerminErstellenStatus {
-	ERSTELLEN,
-	TITEL,
-	START_DATUM_ZEIT,
-	END_DATUM_ZEIT,
-	ORT_EINGEBEN,
-	WIEDERKEHRENDER_TERMIN,
-	PERSON_EINLADEN,
-	REMINDER_SETZEN,
-	TERMIN_SPEICHERN
+	
+	TITEL {
+		@Override
+		public String getTerminStatus() {
+			return "Bitte Titel angeben!";
+		}
+	},
+
+	START_DATUM_ZEIT {
+		@Override
+		public String getTerminStatus() {
+			return "Bitte Von-Datum angeben!";
+		}
+	},
+	
+	END_DATUM_ZEIT {
+		@Override
+		public String getTerminStatus() {
+			return "Bitte Bis-Adtum angeben!";
+		}
+	},
+	
+	ORT_EINGEBEN {
+		@Override
+		public String getTerminStatus() {
+			return "Ort-Angabe ist leer - Bitte befüllen!";
+		}
+	},
+	
+	WIEDERKEHRENDER_TERMIN {
+		@Override
+		public String getTerminStatus() {
+			return "Kein Wiederkehrender gesetzt!";
+		}
+	},
+	
+	EINLADUNGEN {
+		@Override
+		public String getTerminStatus() {
+			return "Keine Einladung versendet!";
+		}
+	},
+	
+	REMINDER {
+		@Override
+		public String getTerminStatus() {
+			return "Kein Reminder gesetzt.";
+		}
+	},
+	;
+	
+	
+	
+	public abstract String getTerminStatus();
 }

@@ -59,4 +59,8 @@ public class PanelDatumAuswahl extends JPanel{
 	public String getName() {
 		return strName;
 	}
+
+	public JSpinner.DateEditor getEditor() {
+		return editor;
+	}
 }

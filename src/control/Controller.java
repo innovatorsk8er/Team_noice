@@ -2,8 +2,10 @@ package control;
 
 import java.awt.Font;
 import enums.AnwenderStatus;
+import enums.TerminErstellenStatus;
 import model.Model;
 import view.ConsoleView;
+
 /**
  * @author Ernesto Escalier
  * 
@@ -24,10 +26,10 @@ public class Controller {
 	private void initView() {
 		consoleView.getLblStatus().setText(model.getWillkommenTxt());
 		consoleView.getLblStatus().setFont(new Font(Font.DIALOG, Font.BOLD, 18));
-		
+
 		consoleView.getLblReminder().setText(model.getKeineZukuenftigeTermine());
 		consoleView.getLblReminder().setFont(new Font(Font.DIALOG, Font.BOLD, 18));
-		
+
 		consoleView.getJbtnNeuerTermin().setEnabled(false);
 		consoleView.getJbtnTerminBearbeiten().setEnabled(false);
 	}
@@ -39,13 +41,14 @@ public class Controller {
 		consoleView.getJbtnTabNeuerTerminSchliessen().addActionListener(e -> neuerTerminSchliessen());
 		consoleView.getJbtnTerminBearbeiten().addActionListener(e -> bearbeiteTermin());
 		consoleView.getJbtnTabBearbeteTerminSchliessen().addActionListener(e -> bearbeiteTerminSchliessen());
+		consoleView.getJbtnTerminSpeichern().addActionListener(e -> neuerTerminSpeichern());
 	}
 
 	private void neuerTermin() {
 		consoleView.initNeuerTermin();
 		consoleView.getJbtnNeuerTermin().setEnabled(false);
 	}
-	
+
 	private void neuerTerminSchliessen() {
 		consoleView.getTabbedPane().remove(consoleView.getPanelNeuerTermin());
 		consoleView.getJbtnNeuerTermin().setEnabled(true);
@@ -59,20 +62,17 @@ public class Controller {
 	private void bearbeiteTerminSchliessen() {
 		consoleView.getTabbedPane().remove(consoleView.getPanelTerminBearbeiten());
 		consoleView.getJbtnTerminBearbeiten().setEnabled(true);
-		
+
 	}
-	
+
 	private void speichereProfil() {
 		if (consoleView.getTxtVorname().getText().equals("")) {
 			consoleView.getLblStatus().setText(AnwenderStatus.OFFEN_VORNAME.getAnwenderStatus());
-		}
-		else if (consoleView.getTxtNachname().getText().equals("")) {
+		} else if (consoleView.getTxtNachname().getText().equals("")) {
 			consoleView.getLblStatus().setText(AnwenderStatus.OFFEN_NAME.getAnwenderStatus());
-		} 
-		else if (consoleView.getTxtMail().getText().equals("")) {
+		} else if (consoleView.getTxtMail().getText().equals("")) {
 			consoleView.getLblStatus().setText(AnwenderStatus.OFFEN_EMAIL.getAnwenderStatus());
-		}
-		else {
+		} else {
 			consoleView.getLblStatus().setText(AnwenderStatus.EINSATZBEREIT.getAnwenderStatus());
 			model.getAnwender().setVorname(consoleView.getTxtVorname().getText());
 			model.getAnwender().setNachname(consoleView.getTxtNachname().getText());
@@ -94,5 +94,16 @@ public class Controller {
 			consoleView.getJbtnNeuerTermin().setEnabled(true);
 			consoleView.getJbtnTerminBearbeiten().setEnabled(true);
 		}
+	}
+
+	private void neuerTerminSpeichern() {
+		if (consoleView.getTxtTerminTitel().getText().equals("")) {
+			consoleView.getLblStatus().setText(TerminErstellenStatus.TITEL.getTerminStatus());
+		}else if (consoleView.getTxtTerminOrt().getText().equals("")) {
+			consoleView.getLblStatus().setText(TerminErstellenStatus.ORT_EINGEBEN.getTerminStatus());
+		} else {
+			
+		}
+		
 	}
 }

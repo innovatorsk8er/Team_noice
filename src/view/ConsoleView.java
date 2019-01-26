@@ -52,12 +52,12 @@ public class ConsoleView extends JFrame {
 	private JPanel bearbeiteTerminPanel;
 	private JTextField txtTerminTitel;
 	private JTextField txtTerminOrt;
-	private JPanel vonDatum;
-	private JPanel bisDatum;
+	private PanelDatumAuswahl vonDatum;
+	private PanelDatumAuswahl bisDatum;
 	private JComboBox<TerminWiederkehrend> jComboBoxWTermine;
 	private JCheckBox checkBoxReminder;
 	private JTextArea jTextAreaEinladungen;
-	private JButton jbtnTerminspeichern;
+	private JButton jbtnTerminSpeichern;
 
 	/**
 	 * Create the frame.
@@ -155,9 +155,9 @@ public class ConsoleView extends JFrame {
 		jTextAreaEinladungen.setLineWrap(true);
 		neuerTerminPanel.add(jTextAreaEinladungen);
 		// Termin Speichern
-		jbtnTerminspeichern = new JButton(Navigation.SPEICHERN.getString());
-		jbtnTerminspeichern.setBounds(65, 370, 90, 30);
-		neuerTerminPanel.add(jbtnTerminspeichern);
+		jbtnTerminSpeichern = new JButton(Navigation.SPEICHERN.getString());
+		jbtnTerminSpeichern.setBounds(65, 370, 90, 30);
+		neuerTerminPanel.add(jbtnTerminSpeichern);
 	}
 
 	public void initBearbeiteTermin() {
@@ -354,6 +354,10 @@ public class ConsoleView extends JFrame {
 	public JButton getJbtnTabBearbeteTerminSchliessen() {
 		return jbtnTabBearbeteTerminSchliessen;
 	}
+	
+	public JButton getJbtnTerminSpeichern() {
+		return jbtnTerminSpeichern;
+	}
 
 	public JPanel getPanelTerminBearbeiten() {
 		return bearbeiteTerminPanel;
@@ -362,4 +366,33 @@ public class ConsoleView extends JFrame {
 	public JPanel getPanelNeuerTermin() {
 		return neuerTerminPanel;
 	}
+
+	public JTextField getTxtTerminTitel() {
+		return txtTerminTitel;
+	}
+
+	public JTextField getTxtTerminOrt() {
+		return txtTerminOrt;
+	}
+
+	public PanelDatumAuswahl getVonDatum() {
+		return vonDatum;
+	}
+
+	public PanelDatumAuswahl getBisDatum() {
+		return bisDatum;
+	}
+
+	public JComboBox<TerminWiederkehrend> getjComboBoxWTermine() {
+		return jComboBoxWTermine;
+	}
+
+	public JCheckBox getCheckBoxReminder() {
+		return checkBoxReminder;
+	}
+
+	public JTextArea getjTextAreaEinladungen() {
+		return jTextAreaEinladungen;
+	}
+	
 }
