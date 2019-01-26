@@ -1,63 +1,43 @@
 package model;
+
+import java.util.Calendar;
+
+import enums.Farbe;
+
 /**
- * @author Fatma Gediz
- * Terminklasse, für Terminerstellung inkl. allen Optionen
+ * @author Fatma Gediz Terminklasse, für Terminerstellung inkl. allen Optionen
  */
 public class Termin {
 	private String titel;
-	/*
-	private Datum startDatum;
-	private Datum endDatum;
-	private Zeit startZeit;
-	private Zeit endZeit;
+	private Calendar startDatumZeit;
+	private Calendar endDatumZeit;
 	private String ort;
-	private Attachment attachment;
 	private Farbe statusFarbe;
+	private boolean reminder;
+	private String einladungen;
 
-	*/
-	
-	
-	//public void setSpeicher (BufferedWriter dateiAbleger) {
-	//}
-	/*
-	public void setTitel (String titel) {
-		this.titel=titel;
+	public void setTitel(String titel) {
+		this.titel = titel;
 	}
-	
-	public String getTitel () {
+
+	public String getTitel() {
 		return titel;
 	}
-	
-	public void setStartDatum (Datum datum) {
-		this.startDatum=datum;
+
+	public void setStartZeit(Calendar zeit) {
+		this.startDatumZeit = zeit;
 	}
-	
-	public Datum getStartDatum () {
-		return startDatum;
+
+	public Calendar getStartDatumZeit() {
+		return startDatumZeit;
 	}
-	
-	public void setStartZeit (Zeit zeit) {
-		this.startZeit=zeit;
+
+	public void setEndZeit(Calendar zeit) {
+		this.endDatumZeit = zeit;
 	}
-	
-	public Zeit getStartZeit () {
-		return startZeit;
-	}
-	
-	public void setEndDatum (Datum datum) {
-		this.endDatum=datum;
-	}
-	
-	public Datum getendDatum () {
-		return endDatum;
-	}
-	
-	public void setendZeit (Zeit zeit) {
-		this.endZeit=zeit;
-	}
-	
-	public Zeit getendZeit () {
-		return endZeit;
+
+	public Calendar getEndDatumZeit() {
+		return endDatumZeit;
 	}
 
 	public String getOrt() {
@@ -68,25 +48,28 @@ public class Termin {
 		this.ort = ort;
 	}
 
-	public Attachment getAttachment() {
-		return attachment;
-	}
-
-	public void setAttachment(Attachment attachment) {
-		this.attachment = attachment;
-	}
-
 	public Farbe getStatusFarbe() {
 		return statusFarbe;
 	}
 
 	public void setStatusFarbe(Farbe statusFarbe) {
 		this.statusFarbe = statusFarbe;
-	}*/
-
-	
-	
 	}
-	
-	
 
+	public boolean isReminder() {
+		return reminder;
+	}
+
+	public void setReminder(boolean reminder) {
+		this.reminder = reminder;
+	}
+
+	public String getEinladungen() {
+		return einladungen;
+	}
+
+	public void setEinladungen(String einladungen) {
+		this.einladungen = einladungen;
+	}
+
+}
