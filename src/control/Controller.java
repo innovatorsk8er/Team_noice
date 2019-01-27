@@ -1,9 +1,12 @@
 package control;
 
 import java.awt.Font;
+import java.text.ParseException;
+
 import enums.AnwenderStatus;
 import enums.TerminErstellenStatus;
 import model.Model;
+import model.Termin;
 import view.ConsoleView;
 
 /**
@@ -19,7 +22,6 @@ public class Controller {
 		super();
 		this.model = model;
 		this.consoleView = consoleView;
-
 		initView();
 	}
 
@@ -99,11 +101,22 @@ public class Controller {
 	private void neuerTerminSpeichern() {
 		if (consoleView.getTxtTerminTitel().getText().equals("")) {
 			consoleView.getLblStatus().setText(TerminErstellenStatus.TITEL.getTerminStatus());
-		}else if (consoleView.getTxtTerminOrt().getText().equals("")) {
-			consoleView.getLblStatus().setText(TerminErstellenStatus.ORT_EINGEBEN.getTerminStatus());
 		} else {
-			
+			Termin termin;
+			try {
+				termin = new Termin(
+						consoleView.getTxtTerminTitel().getText(),
+						consoleView.getVonDatum().getCalendar(),
+						consoleView.getBisDatum().getCalendar()
+						);
+				termin.setOrt(consoleView.getTxtTerminOrt().getText());
+				termin.setReminder(consoleView.getCheckBoxReminder().isSelected());
+				termin.setEinladungen(consoleView.getTxtMail().getText());
+				model.getTerminListeModel().addElement(termin);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		
 	}
 }

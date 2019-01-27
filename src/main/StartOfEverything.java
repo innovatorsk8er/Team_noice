@@ -28,7 +28,7 @@ public class StartOfEverything {
 			// If Nimbus is not available
 		}
 		Model model = new Model();
-		ConsoleView consoleView = new ConsoleView("TerminListe 1.0");
+		ConsoleView consoleView = new ConsoleView("TerminListe 1.0", model.getTerminListeModel());
 		Controller controller = new Controller(model, consoleView);
 		controller.initController();
 	}

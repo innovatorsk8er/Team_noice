@@ -1,4 +1,9 @@
 package model;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
 /**
  * @author Fatma Gediz
  * GUI-Anweisungen für den User 
@@ -7,12 +12,13 @@ package model;
 public class Model {
 	private Anwender anwender;
 	private AnwenderSicherung anwenderSicherung;
+	private TerminListModel terminListModel;
 
 	public Model() {
 		// Fragen nach neuen Anwender oder laden der Datei
 		anwender = new Anwender();
 		anwenderSicherung = new AnwenderSicherung();
-		// wenn neuer Anwender, dann Profil erstellen
+		terminListModel = new TerminListModel();
 	}
 
 	public String getWillkommenTxt() {
@@ -46,4 +52,9 @@ public class Model {
 	public Anwender getAnwender() {
 		return anwender;
 	}
+	
+	public TerminListModel getTerminListeModel() {
+		return terminListModel;
+	}
+	
 }

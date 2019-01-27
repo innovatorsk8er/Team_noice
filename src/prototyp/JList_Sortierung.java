@@ -64,6 +64,7 @@ public class JList_Sortierung {
             public Entity getElementAt(int i) { return liste.get(i); }
         });
 
+        
         System.out.println(liste); // unsortiert
 
         liste.sort(Comparator.comparing(Entity::getName));

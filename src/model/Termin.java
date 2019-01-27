@@ -15,6 +15,12 @@ public class Termin {
 	private Farbe statusFarbe;
 	private boolean reminder;
 	private String einladungen;
+	
+	public Termin(String titel, Calendar startDatumZeit, Calendar endDatumZeit) {
+		this.titel = titel;
+		this.startDatumZeit = startDatumZeit;
+		this.endDatumZeit = endDatumZeit;
+	}
 
 	public void setTitel(String titel) {
 		this.titel = titel;
@@ -24,16 +30,16 @@ public class Termin {
 		return titel;
 	}
 
-	public void setStartZeit(Calendar zeit) {
-		this.startDatumZeit = zeit;
+	public void setStartZeit(Calendar startDatumZeit) {
+		this.startDatumZeit = startDatumZeit;
 	}
 
 	public Calendar getStartDatumZeit() {
 		return startDatumZeit;
 	}
 
-	public void setEndZeit(Calendar zeit) {
-		this.endDatumZeit = zeit;
+	public void setEndZeit(Calendar endDatumZeit) {
+		this.endDatumZeit = endDatumZeit;
 	}
 
 	public Calendar getEndDatumZeit() {

@@ -9,18 +9,24 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.util.List;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import enums.Navigation;
 import enums.TerminWiederkehrend;
+import model.Termin;
+import model.TerminListModel;
+
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JList;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+import javax.swing.AbstractListModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -32,7 +38,8 @@ public class ConsoleView extends JFrame {
 	private JPanel contentPane;
 	private JPanel termineListePane;
 	private JTabbedPane tabbedPane;
-	private JList terminListe = new JList<>();
+	private JList jList;
+	private TerminListModel terminListModel;
 	private JButton jbtnNeuerTermin;
 	private JButton jbtnTerminBearbeiten;
 	private JPanel profilPane;
@@ -57,15 +64,16 @@ public class ConsoleView extends JFrame {
 	private JComboBox<TerminWiederkehrend> jComboBoxWTermine;
 	private JCheckBox checkBoxReminder;
 	private JTextArea jTextAreaEinladungen;
-	private JButton jbtnTerminSpeichern;
+	private JButton jbtnTerminSpeichern = new JButton(Navigation.SPEICHERN.getString());
 
 	/**
 	 * Create the frame.
 	 * 
 	 * @param titel
 	 */
-	public ConsoleView(String titel) {
+	public ConsoleView(String titel, TerminListModel terminListModel) {
 		setTitle(titel);
+		this.terminListModel = terminListModel;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 780, 615);
 		contentPane = new JPanel();
@@ -155,7 +163,6 @@ public class ConsoleView extends JFrame {
 		jTextAreaEinladungen.setLineWrap(true);
 		neuerTerminPanel.add(jTextAreaEinladungen);
 		// Termin Speichern
-		jbtnTerminSpeichern = new JButton(Navigation.SPEICHERN.getString());
 		jbtnTerminSpeichern.setBounds(65, 370, 90, 30);
 		neuerTerminPanel.add(jbtnTerminSpeichern);
 	}
@@ -211,12 +218,13 @@ public class ConsoleView extends JFrame {
 	}
 
 	private void initTermineListePane() {
+		jList = new JList<Termin>(terminListModel);
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setViewportView(terminListe);
+		scrollPane.setViewportView(jList);
 		termineListePane = new JPanel();
 		tabbedPane.addTab(Navigation.TERMIN_LISTE.getString(), null, termineListePane, "Siehe deine Termine an");
 		termineListePane.setLayout(new BorderLayout());
-		termineListePane.add(terminListe, BorderLayout.CENTER);
+		termineListePane.add(jList, BorderLayout.CENTER);
 		// Button-Bereich
 		JPanel panelButtons = new JPanel();
 		panelButtons.setLayout(new BorderLayout(0, 0));
@@ -288,11 +296,11 @@ public class ConsoleView extends JFrame {
 	}
 
 	public JList getTerminListe() {
-		return terminListe;
+		return jList;
 	}
 
 	public void setTerminListe(JList terminListe) {
-		this.terminListe = terminListe;
+		this.jList = terminListe;
 	}
 
 	public JTextField getTxtVorname() {
@@ -354,7 +362,7 @@ public class ConsoleView extends JFrame {
 	public JButton getJbtnTabBearbeteTerminSchliessen() {
 		return jbtnTabBearbeteTerminSchliessen;
 	}
-	
+
 	public JButton getJbtnTerminSpeichern() {
 		return jbtnTerminSpeichern;
 	}
@@ -393,6 +401,10 @@ public class ConsoleView extends JFrame {
 
 	public JTextArea getjTextAreaEinladungen() {
 		return jTextAreaEinladungen;
+	}
+
+	public JList getjList() {
+		return jList;
 	}
 	
 }
