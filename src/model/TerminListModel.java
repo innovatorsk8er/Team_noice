@@ -12,18 +12,23 @@ public class TerminListModel extends AbstractListModel<Termin> {
 	public TerminListModel() {
 		terminListe = new ArrayList<Termin>();
 	}
-    public void addElement(Termin Termin) {
-    	terminListe.add(Termin);
-        fireIntervalAdded(this, terminListe.size()-1, terminListe.size()-1);
-    }
-    
-    public ArrayList<Termin> getTerminListe(){
-    	return terminListe;
-    }
 
-    @Override
-    public Termin getElementAt(int index) { return terminListe.get(index); }
+	public void addElement(Termin Termin) {
+		terminListe.add(Termin);
+		fireIntervalAdded(this, terminListe.size() - 1, terminListe.size() - 1);
+	}
 
-    @Override
-    public int getSize() { return terminListe.size(); }
+	public ArrayList<Termin> getTerminListe() {
+		return terminListe;
+	}
+
+	@Override
+	public Termin getElementAt(int index) {
+		return terminListe.get(index);
+	}
+
+	@Override
+	public int getSize() {
+		return terminListe.size();
+	}
 }

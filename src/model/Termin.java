@@ -1,7 +1,13 @@
 package model;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
+import enums.DatumFormat;
 import enums.Farbe;
 
 /**
@@ -77,5 +83,28 @@ public class Termin {
 	public void setEinladungen(String einladungen) {
 		this.einladungen = einladungen;
 	}
+	
+	private String toDatumString(Calendar cal) {
+		Date date = cal.getTime();             
+		SimpleDateFormat format = new SimpleDateFormat(DatumFormat.DATUM_SCHWEIZ.getFormat());          
+		return format.format(date).toString();
+	}
+	
+	private String toZeitVonBisString(Calendar calVon, Calendar calBis) {
+		Date dateVon = calVon.getTime();    
+		Date dateBis = calBis.getTime();  
+		SimpleDateFormat format = new SimpleDateFormat(DatumFormat.ZEIT_SCHWEIZ.getFormat());          
+		return format.format(dateVon).toString() +" - "+format.format(dateBis).toString();
+	}
+	
+	
+    public String toString() {
+		return toDatumString(startDatumZeit) 
+				+ "     " 
+				+ toZeitVonBisString(startDatumZeit,endDatumZeit) 
+				+ "             "
+				+ titel
+				;
+    }
 
 }

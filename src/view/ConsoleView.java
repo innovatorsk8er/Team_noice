@@ -5,11 +5,11 @@ package view;
  */
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -23,10 +23,10 @@ import model.TerminListModel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.ListCellRenderer;
 import javax.swing.JList;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
-import javax.swing.AbstractListModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -38,7 +38,7 @@ public class ConsoleView extends JFrame {
 	private JPanel contentPane;
 	private JPanel termineListePane;
 	private JTabbedPane tabbedPane;
-	private JList jList;
+	private JList<Termin> jList;
 	private TerminListModel terminListModel;
 	private JButton jbtnNeuerTermin;
 	private JButton jbtnTerminBearbeiten;
@@ -65,6 +65,7 @@ public class ConsoleView extends JFrame {
 	private JCheckBox checkBoxReminder;
 	private JTextArea jTextAreaEinladungen;
 	private JButton jbtnTerminSpeichern = new JButton(Navigation.SPEICHERN.getString());
+	private JButton jbtnTerminBearbeitenSpeichern = new JButton(Navigation.SPEICHERN.getString());
 
 	/**
 	 * Create the frame.
@@ -167,8 +168,8 @@ public class ConsoleView extends JFrame {
 		neuerTerminPanel.add(jbtnTerminSpeichern);
 	}
 
-	public void initBearbeiteTermin() {
-		// Tab-Close Button
+	public void initBearbeiteTermin(Termin termin) {
+		// Tab-Header-Bereich
 		jbtnTabBearbeteTerminSchliessen.setOpaque(false);
 		jbtnTabBearbeteTerminSchliessen.setContentAreaFilled(false);
 		jbtnTabBearbeteTerminSchliessen.setPreferredSize(new Dimension(45, 15));
@@ -192,35 +193,91 @@ public class ConsoleView extends JFrame {
 		gbc.weightx = 0;
 		pnlTab.add(jbtnTabBearbeteTerminSchliessen, gbc);
 
-		tabbedPane.addTab(titel, null, bearbeiteTerminPanel, "Termin wird bearbeitet");
+		tabbedPane.addTab(titel, null, bearbeiteTerminPanel, "Termin bearbeiten");
+		int tabNeuIndex = tabbedPane.indexOfTab(titel);
+		tabbedPane.setTabComponentAt(tabNeuIndex, pnlTab);
+		tabbedPane.setSelectedIndex(tabNeuIndex);
 
-		int tabBearbeiteIndex = tabbedPane.indexOfTab(titel);
-		tabbedPane.setTabComponentAt(tabBearbeiteIndex, pnlTab);
-		tabbedPane.setSelectedIndex(tabBearbeiteIndex);
-		// Neuer Termin erstellen Ansicht
+		// Tab-Body
 		bearbeiteTerminPanel.setLayout(null);
-		// Vorname
-		/*
-		 * neuerTerminPanel = new JLabel("Vorname:"); neuerTerminPanel.setBounds(65, 20,
-		 * 90, 40); profilPane.add(lblVorname); txtVorname = new JTextField();
-		 * txtVorname.setBounds(168, 20, 190, 40); profilPane.add(txtVorname); //
-		 * Nachname lblNachname = new JLabel("Nachname:"); lblNachname.setBounds(65, 70,
-		 * 90, 40); profilPane.add(lblNachname); txtNachname = new JTextField();
-		 * txtNachname.setBounds(168, 70, 190, 40); profilPane.add(txtNachname); // Mail
-		 * lblMail = new JLabel("E-Mail"); lblMail.setBounds(65, 120, 90, 40);
-		 * profilPane.add(lblMail); txtMail = new JTextField(); txtMail.setBounds(168,
-		 * 120, 190, 40); profilPane.add(txtMail); // Button Bereich jbtnProfilspeichern
-		 * = new JButton("Speichern"); jbtnProfilspeichern.setBounds(168, 170, 190, 30);
-		 * profilPane.add(jbtnProfilspeichern); // Button Bereich jbtnProfilLaden = new
-		 * JButton("Laden"); jbtnProfilLaden.setBounds(168, 220, 190, 30);
-		 */
-		// profilPane.add(jbtnProfilLaden);
+		// Titel
+		JLabel lblTerminTitel = new JLabel("Titel:");
+		lblTerminTitel.setBounds(65, 20, 90, 40);
+		bearbeiteTerminPanel.add(lblTerminTitel);
+		txtTerminTitel = new JTextField();
+		txtTerminTitel.setBounds(168, 20, 455, 40);
+		txtTerminTitel.setText(termin.getTitel());
+		bearbeiteTerminPanel.add(txtTerminTitel);
+		// Ort
+		JLabel lblTerminOrt = new JLabel("Ort:");
+		lblTerminOrt.setBounds(65, 70, 90, 40);
+		bearbeiteTerminPanel.add(lblTerminOrt);
+		txtTerminOrt = new JTextField();
+		txtTerminOrt.setBounds(168, 70, 455, 40);
+		txtTerminOrt.setText(termin.getOrt());
+		bearbeiteTerminPanel.add(txtTerminOrt);
+		// Von-Datum
+		vonDatum = new PanelDatumAuswahl("Von-Datum");
+		vonDatum.setBounds(65, 120, 260, 40);
+		//vonDatum.getEditor().set TODO
+		bearbeiteTerminPanel.add(vonDatum);
+		// Bis-Datum
+		bisDatum = new PanelDatumAuswahl("Bis-Datum");
+		bisDatum.setBounds(370, 120, 500, 40);
+		bearbeiteTerminPanel.add(bisDatum);
+		// Wiederkehrende Termine
+		JLabel lblTerminWk = new JLabel("Wiederkehrend:");
+		lblTerminWk.setBounds(65, 170, 90, 40);
+		bearbeiteTerminPanel.add(lblTerminWk);
+		jComboBoxWTermine = new JComboBox<TerminWiederkehrend>();
+		jComboBoxWTermine.setModel(new DefaultComboBoxModel<TerminWiederkehrend>(TerminWiederkehrend.values()));
+		jComboBoxWTermine.setBounds(168, 170, 150, 40);
+		neuerTerminPanel.add(jComboBoxWTermine);
+		// Reminder
+		JLabel lblTerminReminder = new JLabel("Reminder:");
+		lblTerminReminder.setBounds(65, 220, 90, 40);
+		bearbeiteTerminPanel.add(lblTerminReminder);
+		checkBoxReminder = new JCheckBox();
+		checkBoxReminder.setBounds(168, 220, 150, 40);
+		neuerTerminPanel.add(checkBoxReminder);
+		// Personen Einladen
+		JLabel lblTerminEinladung = new JLabel("Einladen:");
+		lblTerminEinladung.setBounds(65, 270, 90, 40);
+		bearbeiteTerminPanel.add(lblTerminEinladung);
+		jTextAreaEinladungen = new JTextArea();
+		jTextAreaEinladungen.setBounds(168, 270, 455, 80);
+		jTextAreaEinladungen.setLineWrap(true);
+		jTextAreaEinladungen.setText(termin.getEinladungen());
+		bearbeiteTerminPanel.add(jTextAreaEinladungen);
+		
+		// Termin Speichern
+		jbtnTerminBearbeitenSpeichern.setBounds(65, 370, 90, 30);
+		bearbeiteTerminPanel.add(jbtnTerminBearbeitenSpeichern);
+
 	}
 
 	private void initTermineListePane() {
 		jList = new JList<Termin>(terminListModel);
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setViewportView(jList);
+		// Farben setzer
+		/*
+		 * TODO Farbe setzen bei JList jList.setCellRenderer(new
+		 * TerminListCellRenderer()); jList.setCellRenderer(new
+		 * DefaultListCellRenderer() {
+		 * 
+		 * @Override public Component getListCellRendererComponent(JList list, Object
+		 * value, int index, boolean isSelected, boolean cellHasFocus) { Component c =
+		 * super.getListCellRendererComponent(list, value, index, isSelected,
+		 * cellHasFocus); if (value instanceof Termin) { Termin nextTermin = (Termin)
+		 * value; setText(nextTermin.name); if (nextUser.loggedIn) {
+		 * setForeground(Color.GREEN); } else { setForeground(Color.RED); }
+		 * 
+		 * } else { setText("whodat?"); } return c; }
+		 * 
+		 * });
+		 */
+		//
 		termineListePane = new JPanel();
 		tabbedPane.addTab(Navigation.TERMIN_LISTE.getString(), null, termineListePane, "Siehe deine Termine an");
 		termineListePane.setLayout(new BorderLayout());
@@ -293,14 +350,6 @@ public class ConsoleView extends JFrame {
 		initStatusContent();
 		initTermineListePane();
 		initProfil();
-	}
-
-	public JList getTerminListe() {
-		return jList;
-	}
-
-	public void setTerminListe(JList terminListe) {
-		this.jList = terminListe;
 	}
 
 	public JTextField getTxtVorname() {
@@ -403,8 +452,12 @@ public class ConsoleView extends JFrame {
 		return jTextAreaEinladungen;
 	}
 
-	public JList getjList() {
+	public JList<Termin> getjList() {
 		return jList;
 	}
-	
+
+	public JButton getJbtnTerminBearbeitenSpeichern() {
+		return jbtnTerminBearbeitenSpeichern;
+	}
+
 }

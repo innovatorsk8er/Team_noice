@@ -2,11 +2,15 @@ package control;
 
 import java.awt.Font;
 import java.text.ParseException;
+import java.util.Calendar;
+import java.util.Date;
 
 import enums.AnwenderStatus;
 import enums.TerminErstellenStatus;
+import enums.TerminWiederkehrend;
 import model.Model;
 import model.Termin;
+import model.TerminListModel;
 import view.ConsoleView;
 
 /**
@@ -44,6 +48,7 @@ public class Controller {
 		consoleView.getJbtnTerminBearbeiten().addActionListener(e -> bearbeiteTermin());
 		consoleView.getJbtnTabBearbeteTerminSchliessen().addActionListener(e -> bearbeiteTerminSchliessen());
 		consoleView.getJbtnTerminSpeichern().addActionListener(e -> neuerTerminSpeichern());
+		consoleView.getJbtnTabBearbeteTerminSchliessen().addActionListener(e -> bearbeiterTerminSpeichern());
 	}
 
 	private void neuerTermin() {
@@ -57,7 +62,7 @@ public class Controller {
 	}
 
 	private void bearbeiteTermin() {
-		consoleView.initBearbeiteTermin();
+		consoleView.initBearbeiteTermin(consoleView.getjList().getSelectedValue());
 		consoleView.getJbtnTerminBearbeiten().setEnabled(false);
 	}
 
@@ -104,19 +109,53 @@ public class Controller {
 		} else {
 			Termin termin;
 			try {
-				termin = new Termin(
-						consoleView.getTxtTerminTitel().getText(),
-						consoleView.getVonDatum().getCalendar(),
-						consoleView.getBisDatum().getCalendar()
-						);
+				termin = new Termin(consoleView.getTxtTerminTitel().getText(), consoleView.getVonDatum().getCalendar(),
+						consoleView.getBisDatum().getCalendar());
 				termin.setOrt(consoleView.getTxtTerminOrt().getText());
 				termin.setReminder(consoleView.getCheckBoxReminder().isSelected());
 				termin.setEinladungen(consoleView.getTxtMail().getText());
-				model.getTerminListeModel().addElement(termin);
+
+				if (consoleView.getjComboBoxWTermine().getSelectedItem().equals(TerminWiederkehrend.NEIN)) {
+					model.getTerminListeModel().addElement(termin);
+				} else {
+					while (termin.getStartDatumZeit().before(termin.getEndDatumZeit())) {
+						if (consoleView.getjComboBoxWTermine().getSelectedItem().equals(TerminWiederkehrend.TAEGLICH)) {
+							termin.getStartDatumZeit().add(Calendar.DATE, 1);
+							model.getTerminListeModel().addElement(termin);
+						}
+
+						if (consoleView.getjComboBoxWTermine().getSelectedItem()
+								.equals(TerminWiederkehrend.WOECHENTLICH)) {
+							termin.getStartDatumZeit().add(Calendar.DAY_OF_WEEK_IN_MONTH, 1);
+							model.getTerminListeModel().addElement(termin);
+						}
+
+						if (consoleView.getjComboBoxWTermine().getSelectedItem()
+								.equals(TerminWiederkehrend.MONATLICH)) {
+							termin.getStartDatumZeit().add(Calendar.MONTH, 1);
+							model.getTerminListeModel().addElement(termin);
+						}
+						if (consoleView.getjComboBoxWTermine().getSelectedItem()
+								.equals(TerminWiederkehrend.JAEHRLICH)) {
+							termin.getStartDatumZeit().add(Calendar.YEAR, 1);
+							model.getTerminListeModel().addElement(termin);
+						}
+					}
+				}
+				consoleView.getTabbedPane().remove(consoleView.getPanelNeuerTermin());
+				consoleView.getJbtnNeuerTermin().setEnabled(true);
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 	}
+	
+	private void bearbeiterTerminSpeichern() {
+		consoleView.getjList().getSelectedValue().setTitel(consoleView.getTxtTerminTitel().getText());
+		consoleView.getjList().getSelectedValue().setOrt(consoleView.getTxtTerminOrt().getText());
+		consoleView.getjList().getSelectedValue().setEinladungen(consoleView.getTxtMail().getText());
+		consoleView.getjList().repaint();
+	}
+
 }

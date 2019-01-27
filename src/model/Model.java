@@ -1,9 +1,5 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
-
-
 /**
  * @author Fatma Gediz
  * GUI-Anweisungen für den User 
