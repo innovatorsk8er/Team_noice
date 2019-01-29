@@ -7,7 +7,7 @@ import enums.AnwenderStatus;
 /**
  * @author Viviane Traber
  * Anwenderklasse, die beschreibt, welche Eigenschaften ein Anwender hat.
- * Ergänzungen des Profils/Profildaten
+ * Erg\u00e4nzungen des Profils/Profildaten
  */
 
 public class Anwender extends Profil implements Serializable{

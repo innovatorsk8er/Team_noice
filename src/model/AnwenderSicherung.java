@@ -26,7 +26,7 @@ public class AnwenderSicherung implements Serializable {
 	public AnwenderSicherungStatus getAnwenderSicherungStatus() {
 		return anwenderSicherungStatus;
 	}
-
+/* Profil speichern*/
 	public void serializeModel(Anwender anwender) {
 		FileOutputStream fout = null;
 		ObjectOutputStream oos = null;
@@ -63,7 +63,7 @@ public class AnwenderSicherung implements Serializable {
 			}
 		}
 	}
-
+/* Profil laden */
 	public Anwender deserialzeModel() {
 		Anwender anwender = null;
 

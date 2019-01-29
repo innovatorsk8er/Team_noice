@@ -2,7 +2,7 @@ package model;
 
 /**
  * @author Fatma Gediz
- * GUI-Anweisungen für den User 
+ * GUI-Anweisungen f\u00fcr den User 
  */
 
 public class Model {

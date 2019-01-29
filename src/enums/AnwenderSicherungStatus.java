@@ -2,8 +2,8 @@ package enums;
 /**
  * 
  * @author Viviane Traber
- * Enumerations für den Status der Anwendersicherung.
- * Rückgabewerte fürs GUI
+ * Enumerations f\u00fcr den Status der Anwendersicherung.
+ * R\u00fcckgabewerte f\u00fcrs GUI
  *
  */
 

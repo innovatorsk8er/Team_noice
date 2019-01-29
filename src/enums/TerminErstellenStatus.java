@@ -3,7 +3,7 @@ package enums;
 /**
  * 
  * @author Fatma Gediz
- * Enumerations für den Status den ein Termin annehmen kann
+ * Enumerations f\u00fcr den Status den ein Termin annehmen kann
  *
  */
 public enum TerminErstellenStatus {
@@ -32,7 +32,7 @@ public enum TerminErstellenStatus {
 	ORT_EINGEBEN {
 		@Override
 		public String getTerminStatus() {
-			return "Ort-Angabe ist leer - Bitte befüllen!";
+			return "Ort-Angabe ist leer - Bitte bef\\u00fcllen!";
 		}
 	},
 	

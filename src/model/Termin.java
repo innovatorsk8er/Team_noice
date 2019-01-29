@@ -11,7 +11,7 @@ import enums.DatumFormat;
 import enums.Farbe;
 
 /**
- * @author Fatma Gediz Terminklasse, für Terminerstellung inkl. allen Optionen
+ * @author Fatma Gediz Terminklasse, f\u00fcr Terminerstellung inkl. allen Optionen
  */
 public class Termin {
 	private String titel;

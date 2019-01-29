@@ -3,7 +3,7 @@ import java.awt.Color;
 /**
  * 
  * @author Alessio Crincoli
- * Enums für die Status-Farben der Termine
+ * Enums f\u00fcr die Status-Farben der Termine
  *
  */
 
