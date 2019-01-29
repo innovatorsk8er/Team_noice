@@ -9,7 +9,8 @@ import model.Anwender;
 import model.AnwenderSicherung;
 
 public class AnwenderSicherungTest extends TestCase {
-private AnwenderSicherung anwenderSicherung; 
+private AnwenderSicherung anwenderSicherung;
+private Anwender anwender;
 	
 	
 	@Test
@@ -30,7 +31,19 @@ private AnwenderSicherung anwenderSicherung;
 		assertEquals(AnwenderSicherungStatus.LADEN_ERFOLGREICH.getAnwenderSicherungsStatus(),
 				anwenderSicherung.getAnwenderSicherungStatus().LADEN_ERFOLGREICH.getAnwenderSicherungsStatus());
 	 }
-}
 
+	@Test
+	public void testAnwenderSicherungSpeichern()
+	{
+		anwenderSicherung = new AnwenderSicherung();
+		anwender = new Anwender();
+		anwender.setVorname("Fatma");
+		anwender.setNachname("Gediz");
+		anwender.setEmail("fg@ch.ch");
+		anwenderSicherung.serializeModel(anwender);
+		assertEquals(AnwenderSicherungStatus.SPEICHERN_ERFOLGREICH.getAnwenderSicherungsStatus(),
+				anwenderSicherung.getAnwenderSicherungStatus().SPEICHERN_ERFOLGREICH.getAnwenderSicherungsStatus());
+	}
+}
 
 
