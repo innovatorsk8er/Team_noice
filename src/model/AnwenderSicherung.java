@@ -16,23 +16,28 @@ public class AnwenderSicherung implements Serializable {
 
 
 	private static final long serialVersionUID = 1L;
-	private final String FILE_NAME_PATH = "c:\\temp\\TerminListe.noice";
+	private String fileNamePath = System.getProperty("c:/temp/TerminListe.noice");
 	private AnwenderSicherungStatus anwenderSicherungStatus = AnwenderSicherungStatus.KEIN;
 
 	public String getFileNamePath() {
-		return FILE_NAME_PATH;
+		return fileNamePath;
 	}
 	
 	public AnwenderSicherungStatus getAnwenderSicherungStatus() {
 		return anwenderSicherungStatus;
 	}
+	
+	public void setFileNamePath(String path) {
+		fileNamePath=path;
+	}
+
 /* Profil speichern*/
 	public void serializeModel(Anwender anwender) {
 		FileOutputStream fout = null;
 		ObjectOutputStream oos = null;
 
 		try {
-			fout = new FileOutputStream(FILE_NAME_PATH);
+			fout = new FileOutputStream(fileNamePath);
 			oos = new ObjectOutputStream(fout);
 			oos.writeObject(anwender);
 
@@ -71,7 +76,7 @@ public class AnwenderSicherung implements Serializable {
 		ObjectInputStream ois = null;
 
 		try {
-			fin = new FileInputStream(FILE_NAME_PATH);
+			fin = new FileInputStream(fileNamePath);
 			ois = new ObjectInputStream(fin);
 			anwender = (Anwender) ois.readObject();
 			anwenderSicherungStatus = AnwenderSicherungStatus.LADEN_ERFOLGREICH;
