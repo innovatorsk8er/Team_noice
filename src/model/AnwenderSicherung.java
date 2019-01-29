@@ -16,7 +16,7 @@ public class AnwenderSicherung implements Serializable {
 
 
 	private static final long serialVersionUID = 1L;
-	private String fileNamePath = System.getProperty("c:/temp/TerminListe.noice");
+	private String fileNamePath = "c:\\temp\\TerminListe.noice";
 	private AnwenderSicherungStatus anwenderSicherungStatus = AnwenderSicherungStatus.KEIN;
 
 	public String getFileNamePath() {

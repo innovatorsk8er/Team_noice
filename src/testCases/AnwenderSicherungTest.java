@@ -26,13 +26,10 @@ private AnwenderSicherung anwenderSicherung;
 	 public void testAnwenderSicherungLaden()
 	 {
 		anwenderSicherung = new AnwenderSicherung();
-		assertEquals(null,
-					anwenderSicherung.deserialzeModel());
-		anwenderSicherung.setFileNamePath("/Users/gast/git/Team_noice_EndEdition/c:/temp/TerminListe.noice");
+		anwenderSicherung.deserialzeModel();
 		assertEquals(AnwenderSicherungStatus.LADEN_ERFOLGREICH.getAnwenderSicherungsStatus(),
-				anwenderSicherung.deserialzeModel().getAnwenderStatus().getAnwenderStatus());
+				anwenderSicherung.getAnwenderSicherungStatus().LADEN_ERFOLGREICH.getAnwenderSicherungsStatus());
 	 }
-
 }
 
 
