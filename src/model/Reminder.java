@@ -1,15 +1,18 @@
+package model;
 
-
+/** 
+ * @author Ernesto Escalier
+ * Begonnen diese Klassen zu entwickeln für die Reminder-Logik in der GUI.
+ * 
+ */
 public class Reminder { 
-	/*
-	private Zeit reminderZeit;
-	private Datum reminderDatum;
+
+	//private Zeit reminderZeit;
+	//private Datum reminderDatum;
 	
-	public Reminder (Datum reminderDatum, Zeit reminderZeit) {
-		this.reminderZeit = reminderZeit;
-		this.reminderDatum = reminderDatum;
+	public Reminder () {
 	}
-	
+	/*
 	Termin t = new Termin();
 	
 	Datum d = new Datum();
@@ -24,6 +27,7 @@ public class Reminder {
 	public Datum getReminderDatum () {
 		return reminderDatum;
 	}
+	*/
 	
 /*
 	public void setMinutenReminder (Zeit minuten) {

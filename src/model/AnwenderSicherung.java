@@ -19,19 +19,32 @@ public class AnwenderSicherung implements Serializable {
 	private String fileNamePath = "c:\\temp\\TerminListe.noice";
 	private AnwenderSicherungStatus anwenderSicherungStatus = AnwenderSicherungStatus.KEIN;
 
+	/*
+	 * Gibt den Speicher.Pfad zurück
+	 */
 	public String getFileNamePath() {
 		return fileNamePath;
 	}
 	
+	/*
+	 * Gibt den Enum-Wert des Sicherungsstatus zurück
+	 */
 	public AnwenderSicherungStatus getAnwenderSicherungStatus() {
 		return anwenderSicherungStatus;
 	}
 	
+	/*
+	 * Setzt einen neuen Speicherort fest.
+	 */
 	public void setFileNamePath(String path) {
 		fileNamePath=path;
 	}
 
-/* Profil speichern*/
+	/*
+	 * Mit der Übergabe des Paramemeters Anwenders, werden all Termine sowie dessen Profil
+	 * gespeichert.
+	 * Im übrigen wird der Benutzer informiert, ob der Speichervorgang erfolgreich war oder nicht.
+	 */
 	public void serializeModel(Anwender anwender) {
 		FileOutputStream fout = null;
 		ObjectOutputStream oos = null;
@@ -68,7 +81,11 @@ public class AnwenderSicherung implements Serializable {
 			}
 		}
 	}
-/* Profil laden */
+
+	/*
+	 * Es wird das Profil des Benutzers geladen (Objekt Anwender)
+	 * Auch hier wird der Status durchgegeben, ob das Laden erfolreich war oder nicht.
+	 */
 	public Anwender deserialzeModel() {
 		Anwender anwender = null;
 

@@ -22,6 +22,10 @@ public class Controller {
 	private Model model;
 	private ConsoleView consoleView;
 
+	/*
+	 * Hier werden die Schnittstellen zu den Schwesternklassen Model und View sichergestellt.
+	 * Ebenfalls werden hier die Listener der Gui-Objekte initialisiert.
+	 */
 	public Controller(Model model, ConsoleView consoleView) {
 		super();
 		this.model = model;
@@ -29,6 +33,9 @@ public class Controller {
 		initView();
 	}
 
+	/*
+	 * Start initialsierung des GUI
+	 */
 	private void initView() {
 		consoleView.getLblStatus().setText(model.getWillkommenTxt());
 		consoleView.getLblStatus().setFont(new Font(Font.DIALOG, Font.BOLD, 18));
@@ -40,6 +47,9 @@ public class Controller {
 		consoleView.getJbtnTerminBearbeiten().setEnabled(false);
 	}
 
+	/*
+	 * Die ActionsListener der Buttons werden hier initialisiert.
+	 */
 	public void initController() {
 		consoleView.getJbtnProfilLaden().addActionListener(e -> ladeProfil());
 		consoleView.getJbtnProfilspeichern().addActionListener(e -> speichereProfil());
@@ -51,27 +61,42 @@ public class Controller {
 		consoleView.getJbtnTabBearbeteTerminSchliessen().addActionListener(e -> bearbeiterTerminSpeichern());
 	}
 
+	/*
+	 * Button Befehl-Methode
+	 */
 	private void neuerTermin() {
 		consoleView.initNeuerTermin();
 		consoleView.getJbtnNeuerTermin().setEnabled(false);
 	}
 
+	/*
+	 * Button Befehl-Methode
+	 */
 	private void neuerTerminSchliessen() {
 		consoleView.getTabbedPane().remove(consoleView.getPanelNeuerTermin());
 		consoleView.getJbtnNeuerTermin().setEnabled(true);
 	}
 
+	/*
+	 * Button Befehl-Methode
+	 */
 	private void bearbeiteTermin() {
 		consoleView.initBearbeiteTermin(consoleView.getjList().getSelectedValue());
 		consoleView.getJbtnTerminBearbeiten().setEnabled(false);
 	}
 
+	/*
+	 * Button Befehl-Methode
+	 */
 	private void bearbeiteTerminSchliessen() {
 		consoleView.getTabbedPane().remove(consoleView.getPanelTerminBearbeiten());
 		consoleView.getJbtnTerminBearbeiten().setEnabled(true);
 
 	}
 
+	/*
+	 * Button Befehl-Methode
+	 */
 	private void speichereProfil() {
 		if (consoleView.getTxtVorname().getText().equals("")) {
 			consoleView.getLblStatus().setText(AnwenderStatus.OFFEN_VORNAME.getAnwenderStatus());
@@ -90,6 +115,9 @@ public class Controller {
 		consoleView.getLblStatus().setFont(new Font(Font.DIALOG, Font.BOLD, 18));
 	}
 
+	/*
+	 * Button Befehl-Methode
+	 */
 	private void ladeProfil() {
 		model.ladeAnwenderSicherung();
 		consoleView.getLblStatus().setText(model.getAnwender().getAnwenderStatus().getAnwenderStatus());
@@ -103,6 +131,9 @@ public class Controller {
 		}
 	}
 
+	/*
+	 * Button Befehl-Methode
+	 */
 	private void neuerTerminSpeichern() {
 		if (consoleView.getTxtTerminTitel().getText().equals("")) {
 			consoleView.getLblStatus().setText(TerminErstellenStatus.TITEL.getTerminStatus());
@@ -151,6 +182,9 @@ public class Controller {
 		}
 	}
 	
+	/*
+	 * Button Befehl-Methode
+	 */
 	private void bearbeiterTerminSpeichern() {
 		consoleView.getjList().getSelectedValue().setTitel(consoleView.getTxtTerminTitel().getText());
 		consoleView.getjList().getSelectedValue().setOrt(consoleView.getTxtTerminOrt().getText());

@@ -1,6 +1,5 @@
 package testCases;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.commons.logging.Logger;
@@ -37,7 +36,7 @@ public class AnwenderTest extends TestCase {
 		
 		assertEquals("Hans", anwender.getVorname());
 		assertEquals("Muster", anwender.getNachname());
-		assertEquals("E-Mail", anwender.);
+		assertEquals("hans@muster.ch", anwender.getEmail());
 
 	}
 
