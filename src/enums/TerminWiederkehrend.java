@@ -1,5 +1,11 @@
 package enums;
 
+/**
+ * 
+ * @author Ernesto Escalier
+ * Enumerations f\u00fcr die GUI-Auswahlliste
+ *
+ */
 public enum TerminWiederkehrend {
 	NEIN("Nein",0),
 	TAEGLICH("T\u00e4glich", 1), 

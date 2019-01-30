@@ -68,7 +68,7 @@ public class ConsoleView extends JFrame {
 	private JButton jbtnTerminBearbeitenSpeichern = new JButton(Navigation.SPEICHERN.getString());
 
 	/**
-	 * Create the frame.
+	 * Erstellt das GUI und deren Tabs.
 	 * 
 	 * @param titel
 	 */
@@ -86,6 +86,9 @@ public class ConsoleView extends JFrame {
 		setVisible(true);
 	}
 
+	/*
+	 * Hier wird die Tab-View "Neuen Termin erstellen" initialsiert.
+	 */
 	public void initNeuerTermin() {
 		// Tab-Header-Bereich
 		jbtnTabNeuerTerminSchliessen.setOpaque(false);
@@ -168,6 +171,9 @@ public class ConsoleView extends JFrame {
 		neuerTerminPanel.add(jbtnTerminSpeichern);
 	}
 
+	/*
+	 * Hier wird die Tab-View "Termin bearbeiten" initialsiert.
+	 */
 	public void initBearbeiteTermin(Termin termin) {
 		// Tab-Header-Bereich
 		jbtnTabBearbeteTerminSchliessen.setOpaque(false);
@@ -256,6 +262,9 @@ public class ConsoleView extends JFrame {
 
 	}
 
+	/*
+	 * Hier wird die JList mit den Terminen initialisiert.
+	 */
 	private void initTermineListePane() {
 		jList = new JList<Termin>(terminListModel);
 		JScrollPane scrollPane = new JScrollPane();
@@ -292,6 +301,9 @@ public class ConsoleView extends JFrame {
 		termineListePane.add(panelButtons, BorderLayout.SOUTH);
 	}
 
+	/*
+	 * Hier wird die Tab-View "Profil" initialsiert.
+	 */
 	private void initProfil() {
 		profilPane = new JPanel();
 		tabbedPane.addTab(Navigation.PROFIL.getString(), null, profilPane, "Passe hier dein Profil an");
@@ -328,6 +340,9 @@ public class ConsoleView extends JFrame {
 		profilPane.add(jbtnProfilLaden);
 	}
 
+	/*
+	 * Hier wird die Info-Leiste für die anstehenden Termine initialisiert.
+	 */
 	private void initReminderContent() {
 		lblReminder = new JLabel();
 		lblReminder.setToolTipText("Infoleiste \u00FCber k\u00FCnftige Termine.");
@@ -335,6 +350,9 @@ public class ConsoleView extends JFrame {
 		contentPane.add(lblReminder, BorderLayout.NORTH);
 	}
 
+	/*
+	 * Hier wird der Status-Info-Bereich initialisiert.
+	 */
 	private void initStatusContent() {
 		lblStatus = new JLabel("Alles OK");
 		lblStatus.setToolTipText("Status-Leiste \u00FCber Eingaben.");
@@ -342,6 +360,9 @@ public class ConsoleView extends JFrame {
 		contentPane.add(lblStatus, BorderLayout.SOUTH);
 	}
 
+	/*
+	 * Hier werden alle Tabs, die für die GUI-Ansicht gebraucht werden initialsiert.
+	 */
 	private void initMainContent() {
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		contentPane.add(tabbedPane, BorderLayout.CENTER);
@@ -352,58 +373,98 @@ public class ConsoleView extends JFrame {
 		initProfil();
 	}
 
+	/*
+	 * Vom Textfeld Vorname wird ausgelesen
+	 */
 	public JTextField getTxtVorname() {
 		return txtVorname;
 	}
-
+	/*
+	 * Vom Textfeld Vorname wird gesetzt
+	 */
 	public void setTxtVorname(JTextField txtVorname) {
 		this.txtVorname = txtVorname;
 	}
-
+	/*
+	 * Vom Textfeld Name wird ausgelesen
+	 */
 	public JTextField getTxtNachname() {
 		return txtNachname;
 	}
 
+	/*
+	 * Vom Textfeld Nachname wird gesetzt
+	 */
 	public void setTxtNachname(JTextField txtNachname) {
 		this.txtNachname = txtNachname;
 	}
 
+	/*
+	 * Vom Textfeld Mail wird ausgelesen
+	 */
 	public JTextField getTxtMail() {
 		return txtMail;
 	}
 
+	/*
+	 * Vom Textfeld Mail wird gesetzt
+	 */
 	public void setTxtMail(JTextField txtMail) {
 		this.txtMail = txtMail;
 	}
 
+	/*
+	 * Das Objekt LabelReminder wird zurückgegeben
+	 */
 	public JLabel getLblReminder() {
 		return lblReminder;
 	}
 
+	/*
+	 * Das Objekt LabelStatus wird zurückgegeben
+	 */
 	public JLabel getLblStatus() {
 		return lblStatus;
 	}
 
+	/*
+	 * Das Objekt ButtonNeuerTermin wird zurückgegeben
+	 */
 	public JButton getJbtnNeuerTermin() {
 		return jbtnNeuerTermin;
 	}
 
+	/*
+	 * Das Objekt ButtonTerminBearbeiten wird zurückgegeben
+	 */
 	public JButton getJbtnTerminBearbeiten() {
 		return jbtnTerminBearbeiten;
 	}
 
+	/*
+	 * Das Objekt ButtonTerminSpeichern wird zurückgegeben
+	 */
 	public JButton getJbtnProfilspeichern() {
 		return jbtnProfilspeichern;
 	}
 
+	/*
+	 * Das Objekt ButtonProfilLaden wird zurückgegeben
+	 */
 	public JButton getJbtnProfilLaden() {
 		return jbtnProfilLaden;
 	}
 
+	/*
+	 * Das Objekt LabelReminder wird zurückgegeben
+	 */
 	public JTabbedPane getTabbedPane() {
 		return tabbedPane;
 	}
 
+	/*
+	 * Das Objekt ButtonNeuerTerminSchliessen wird zurückgegeben
+	 */
 	public JButton getJbtnTabNeuerTerminSchliessen() {
 		return jbtnTabNeuerTerminSchliessen;
 	}
@@ -440,6 +501,9 @@ public class ConsoleView extends JFrame {
 		return bisDatum;
 	}
 
+	/*
+	 * Die Auswahlliste mit dem Enum "Terminwiederkehrend" wird zurückgegeben
+	 */
 	public JComboBox<TerminWiederkehrend> getjComboBoxWTermine() {
 		return jComboBoxWTermine;
 	}
@@ -452,6 +516,9 @@ public class ConsoleView extends JFrame {
 		return jTextAreaEinladungen;
 	}
 
+	/*
+	 * Das Objekt JList mit den Terminen drin wird zurückgegeben.
+	 */
 	public JList<Termin> getjList() {
 		return jList;
 	}

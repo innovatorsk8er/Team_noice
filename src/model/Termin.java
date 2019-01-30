@@ -21,6 +21,7 @@ public class Termin {
 	private Farbe statusFarbe;
 	private boolean reminder;
 	private String einladungen;
+	private boolean isAbgeschlossen;
 	
 	public Termin(String titel, Calendar startDatumZeit, Calendar endDatumZeit) {
 		this.titel = titel;
@@ -106,5 +107,13 @@ public class Termin {
 				+ titel
 				;
     }
+    
+    public void setAbschliessen(boolean isAbgeschlossen) {
+    	this.isAbgeschlossen = isAbgeschlossen;
+    }
 
+    public boolean setAbschliessen() {
+    	return isAbgeschlossen;
+    } 
+    
 }

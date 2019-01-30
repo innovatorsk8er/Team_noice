@@ -14,7 +14,11 @@ import view.ConsoleView;
 
 public class StartOfEverything {
 
-	
+	/*
+	 * In der Main-Methode wird auch das Look & Feel - Design "Nimbus" initialisiert.
+	 * Ansonsten für das MVC-Pattern die wichtigen KLassen Model, View und Controller.
+	 * Args-Paramter werden hier nicht bearbeitet oder benötigt.
+	 */
 	public static void main(String[] args) {
 		// NIMBUS Design
 		try {
