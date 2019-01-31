@@ -14,40 +14,46 @@ import model.Anwender;
 import model.AnwenderSicherung;
 import model.Termin;
 
+/**
+ * @author Fatma Gediz 
+ * Test-Terminklasse, f\u00fcr Terminerstellung und Terminstatus
+ */
+
 public class TerminTest extends TestCase {
 
 	private Termin termin;
 	private TerminErstellenStatus terminStatus;
 	
-	
+	/*Test: Termin erstellen*/
 	@Test
 	public void testTermin()
 	{
-		SimpleDateFormat sdf = new SimpleDateFormat(DatumFormat.DATUM_ZEIT_SCHWEIZ.getFormat());	
-		Calendar calendar = new GregorianCalendar(2019,02,07);
-		calendar.getTime();
-		termin = new Termin("TerminTest", calendar, calendar);
+		SimpleDateFormat sdf = new SimpleDateFormat(DatumFormat.DATUM_ZEIT_SCHWEIZ.getFormat());
+		Calendar start = new GregorianCalendar(2019,2,1,13,24,00);	
+		Calendar end = new GregorianCalendar(2019,2,2,13,24,00);
+		termin = new Termin("TerminTest", start, end);
 		termin.setOrt("HWZ");
 		termin.setReminder(true);
 		termin.setEinladungen("ernesto.escalier@blabla.ch;viviane.traber@blabla.ch;alessio.crincoli@bblabla.ch");
-		assertEquals(termin.getTitel(),
+		assertEquals("TerminTest",
 				termin.getTitel());
-		assertEquals(termin.getStartDatumZeit(),
+		assertEquals(start,
 				termin.getStartDatumZeit());
-		assertEquals(termin.getEndDatumZeit(),
+		assertEquals(end,
 				termin.getEndDatumZeit());
-		assertEquals(termin.getOrt(),
+		assertEquals("HWZ",
 				termin.getOrt());
-		assertEquals(termin.isReminder(),
+		assertEquals(true,
 				termin.isReminder());
-		assertEquals(termin.getEinladungen(),
+		assertEquals("ernesto.escalier@blabla.ch;viviane.traber@blabla.ch;alessio.crincoli@bblabla.ch",
 				termin.getEinladungen());	
 	}
 	@Test
 	public void testTerminStatus()
 	{
 		SimpleDateFormat sdf = new SimpleDateFormat(DatumFormat.DATUM_ZEIT_SCHWEIZ.getFormat());	
-		Calendar calendar = new GregorianCalendar(0,0,0);
+		Calendar start = new GregorianCalendar(0,0,0,0,0);
+		Calendar end = new GregorianCalendar(0,0,0,0,0);
 		calendar.getTime();
 		termin = new Termin("",calendar, calendar);
 		termin.setOrt("");
@@ -59,7 +65,6 @@ public class TerminTest extends TestCase {
 		assertEquals(TerminErstellenStatus.TITEL.getTerminStatus(),
 				terminStatus.getTerminStatus());
 	}	
-	
-	
+
 	
 }
