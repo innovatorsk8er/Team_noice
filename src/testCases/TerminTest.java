@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import enums.AnwenderSicherungStatus;
 import enums.DatumFormat;
+import enums.TerminErstellenStatus;
 import junit.framework.TestCase;
 import model.Anwender;
 import model.AnwenderSicherung;
@@ -16,10 +17,11 @@ import model.Termin;
 public class TerminTest extends TestCase {
 
 	private Termin termin;
+	private TerminErstellenStatus terminStatus;
 	
 	
 	@Test
-	public void testAnwenderSicherungSpeichern()
+	public void testTermin()
 	{
 		SimpleDateFormat sdf = new SimpleDateFormat(DatumFormat.DATUM_ZEIT_SCHWEIZ.getFormat());	
 		Calendar calendar = new GregorianCalendar(2019,02,07);
@@ -39,11 +41,24 @@ public class TerminTest extends TestCase {
 		assertEquals(termin.isReminder(),
 				termin.isReminder());
 		assertEquals(termin.getEinladungen(),
-				termin.getEinladungen());
-		
-		
+				termin.getEinladungen());	
 	}
-	
+	@Test
+	public void testTerminStatus()
+	{
+		SimpleDateFormat sdf = new SimpleDateFormat(DatumFormat.DATUM_ZEIT_SCHWEIZ.getFormat());	
+		Calendar calendar = new GregorianCalendar(0,0,0);
+		calendar.getTime();
+		termin = new Termin("",calendar, calendar);
+		termin.setOrt("");
+		termin.setReminder(false);
+		termin.setEinladungen("");
+		if (termin.getTitel()=="") {
+			terminStatus=TerminErstellenStatus.TITEL;
+		}
+		assertEquals(TerminErstellenStatus.TITEL.getTerminStatus(),
+				terminStatus.getTerminStatus());
+	}	
 	
 	
 	
