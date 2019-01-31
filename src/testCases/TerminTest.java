@@ -23,6 +23,7 @@ public class TerminTest extends TestCase {
 
 	private Termin termin;
 	private TerminErstellenStatus terminStatus;
+	private SimpleDateFormat sdf;
 	
 	/*Test: Termin erstellen*/
 	@Test
@@ -48,23 +49,6 @@ public class TerminTest extends TestCase {
 		assertEquals("ernesto.escalier@blabla.ch;viviane.traber@blabla.ch;alessio.crincoli@bblabla.ch",
 				termin.getEinladungen());	
 	}
-	@Test
-	public void testTerminStatus()
-	{
-		SimpleDateFormat sdf = new SimpleDateFormat(DatumFormat.DATUM_ZEIT_SCHWEIZ.getFormat());	
-		Calendar start = new GregorianCalendar(0,0,0,0,0);
-		Calendar end = new GregorianCalendar(0,0,0,0,0);
-		calendar.getTime();
-		termin = new Termin("",calendar, calendar);
-		termin.setOrt("");
-		termin.setReminder(false);
-		termin.setEinladungen("");
-		if (termin.getTitel()=="") {
-			terminStatus=TerminErstellenStatus.TITEL;
-		}
-		assertEquals(TerminErstellenStatus.TITEL.getTerminStatus(),
-				terminStatus.getTerminStatus());
-	}	
 
 	
 }
