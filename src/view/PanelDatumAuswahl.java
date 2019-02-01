@@ -14,17 +14,27 @@ import javax.swing.text.DateFormatter;
 
 import enums.DatumFormat;
 
+/**
+ * @author Ernesto Escalier
+ * JPanel mit den Datumfelder, damit fÃ¼r der Benutzer eine Auswahl treffen kann.
+ */
 public class PanelDatumAuswahl extends JPanel{
 	private static final long serialVersionUID = 1L;
 	private String strName;
 	private JSpinner.DateEditor editor;
 
+	/*
+	 * Dieser JPanel hat eine Bezeichnung, damit beim 
+	 * GUI-Aufbau dies unterschieden werden kann
+	 * @param strName
+	 */
 	public PanelDatumAuswahl(String strName) {
 		this.strName = strName;
 
 		erstelleDatumZeitPanel();
 	}
 
+	// Die Felder Von-Bis-Datum werden mit einem Spinner initialisiert.
 	private void erstelleDatumZeitPanel() {
 		Calendar calendar = new GregorianCalendar();
 		Date now = new Date();
@@ -36,7 +46,7 @@ public class PanelDatumAuswahl extends JPanel{
 
 		editor = new JSpinner.DateEditor(spinner, "dd.MM.yyyy hh:mm:ss");
 		DateFormatter formatter = (DateFormatter) editor.getTextField().getFormatter();
-		formatter.setAllowsInvalid(false); // Hier werden die Eingaben sofort überprüft.
+		formatter.setAllowsInvalid(false); // Hier werden die Eingaben sofort kontrolliert.
 		formatter.setOverwriteMode(true);
 		spinner.setEditor(editor);
 
@@ -48,6 +58,10 @@ public class PanelDatumAuswahl extends JPanel{
 		this.add(spinner);
 	}
 
+	/* Hier wird das Datum initialisiert. 
+	 * @return Calendar-Objekt
+	 * @throws ParseException
+	 */
 	public Calendar getCalendar() throws ParseException {
 		SimpleDateFormat sdf = new SimpleDateFormat(DatumFormat.DATUM_ZEIT_SCHWEIZ.getFormat());
 		Date date = sdf.parse(editor.getTextField().getText());
@@ -56,10 +70,16 @@ public class PanelDatumAuswahl extends JPanel{
 		return cal;
 	}
 	
+	// Name des JPanels wird geladen.
 	public String getName() {
 		return strName;
 	}
 
+	/*
+	 * Damit das Datum bearbeitet werden kann wird der Editor des Spinners
+	 * returniert.
+	 * @return JSpinner
+	 */
 	public JSpinner.DateEditor getEditor() {
 		return editor;
 	}

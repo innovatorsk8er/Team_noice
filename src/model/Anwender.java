@@ -5,12 +5,11 @@ import java.io.Serializable;
 import enums.AnwenderStatus;
 
 /**
- * @author Viviane Traber
+ * @author Viviane Traber 
  * Anwenderklasse, die beschreibt, welche Eigenschaften ein Anwender hat.
- * Erg\u00e4nzungen des Profils/Profildaten
  */
 
-public class Anwender extends Profil implements Serializable{
+public class Anwender implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String nachname;
 	private String vorname;
@@ -18,7 +17,8 @@ public class Anwender extends Profil implements Serializable{
 	private AnwenderStatus anwenderStatus;
 
 	/*
-	 * Standard Konstruktor, der alle erforderlichen Variabeln mit einem Standard-Wert initialsiert.
+	 * Standard Konstruktor, der alle erforderlichen Variabeln mit einem
+	 * Standard-Wert initialsiert.
 	 */
 	public Anwender() {
 		this.nachname = "";
@@ -27,60 +27,46 @@ public class Anwender extends Profil implements Serializable{
 		anwenderStatus = AnwenderStatus.NICHT_EINSATZBEREIT;
 	}
 
-	/*
-	 * Gibt den Namen des Benutzers zurück
-	 */
+	//Gibt den Namen des Benutzers zur\u00fcck
 	public String getNachname() {
 		return nachname;
 	}
 
-	/*
-	 * Setzt den Namen des Benutzers
-	 */
+	//Setzt den Namen des Benutzers
+
 	public void setNachname(String nachname) {
 		this.nachname = nachname;
 	}
 
-	/*
-	 * Gibt den Vornamen des Benutzers zurück
-	 */
+	//Gibt den Vornamen des Benutzers zur\u00fcck
 	public String getVorname() {
 		return vorname;
 	}
 
-	/*
-	 * Setzt den Vornamen des Benutzers.
-	 */
+	// Setzt den Vornamen des Benutzers.
 	public void setVorname(String vorname) {
 		this.vorname = vorname;
 	}
-	
-	/*
-	 * (non-Javadoc)
-	 * @see model.Profil#getEmail()
-	 */
+
+	//Gibt die Email des Benutzers zur\u00fcck
 	public String getEmail() {
 		return email;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see model.Profil#setEmail(java.lang.String)
-	 */
+	//Setzt die Email des Benutzers
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
 	/*
-	 * Gibt den Status des Anwender-Profils zurück, ob dieser Vollstädnig ist oder nicht.
+	 * Gibt den Status des Anwender-Profils zur\u00fcck, ob dieser Vollst\u00e4dnig
+	 * ist oder nicht.
 	 */
 	public AnwenderStatus getAnwenderStatus() {
 		return anwenderStatus;
 	}
 
-	/*
-	 * Setzt den Status des AnwenderProfils
-	 */
+	//Setzt den Status des AnwenderProfils
 	public void setAnwenderStatus(AnwenderStatus anwenderStatus) {
 		this.anwenderStatus = anwenderStatus;
 	}

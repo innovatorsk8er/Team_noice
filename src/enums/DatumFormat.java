@@ -1,5 +1,10 @@
 package enums;
 
+/**
+ * @author Ernesto Escalier 
+ * Hier wird das Datumformat definiert für das Objekt Calendar.
+ */
+
 public enum DatumFormat {
 	DATUM_SCHWEIZ {
 		@Override
@@ -18,8 +23,7 @@ public enum DatumFormat {
 		public String getFormat() {
 			return "dd.MM.yyyy HH:mm:ss";
 		}
-	}
-	;
+	};
 
 	public abstract String getFormat();
 }

@@ -10,6 +10,11 @@ import model.AnwenderSicherung;
 import model.Model;
 import model.TerminListModel;
 
+/**
+ * @author Ernesto Escalier
+ * Mit diesem TestCase wird das Model im MVC-Pattern getestet.
+ */
+
 public class ModelTest extends TestCase{
 
 	private Anwender anwender;
@@ -17,7 +22,7 @@ public class ModelTest extends TestCase{
 	private TerminListModel terminListModel;
 	private Model			model;
 	
-	/* Test: Initialisiere Model*/
+	//Test: Alle wichtigen Variabeln für das Model werden getestet
 	@Test
 	public void testInitModel() {
 		model = new Model();

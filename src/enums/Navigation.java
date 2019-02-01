@@ -1,9 +1,8 @@
 package enums;
+
 /**
- * 
- * @author Alessio Crincoli
+ * @author Alessio Crincoli 
  * Navigation f\u00fcr das GUI
- *
  */
 public enum Navigation {
 
@@ -42,8 +41,7 @@ public enum Navigation {
 		public String getString() {
 			return "Laden";
 		}
-	}
-	;
+	};
 
 	public abstract String getString();
 

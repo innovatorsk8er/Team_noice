@@ -1,17 +1,15 @@
 package enums;
+
 import java.awt.Color;
+
 /**
- * 
- * @author Alessio Crincoli
+ * @author Alessio Crincoli 
  * Enums f\u00fcr die Status-Farben der Termine
- *
  */
 
 public enum Farbe {
 
-	OFFEN(255, 255, 255),
-	FAELLIG(255, 59, 48),
-	ABGESCHLOSSEN(76, 217, 100);
+	OFFEN(255, 255, 255), FAELLIG(255, 59, 48), ABGESCHLOSSEN(76, 217, 100);
 
 	private final int r;
 	private final int g;
@@ -24,30 +22,28 @@ public enum Farbe {
 		this.b = b;
 		this.rgb = r + ", " + g + ", " + b;
 	}
-	
+
 	public String getRGB() {
-        return rgb;
-    }
+		return rgb;
+	}
 
-    //You can add methods like this too
-    public int getRed(){
-        return r;
-    }
+	public int getRed() {
+		return r;
+	}
 
-    public int getGreen(){
-        return g;
-    }
+	public int getGreen() {
+		return g;
+	}
 
-    public int getBlue(){
-        return b;
-    }
+	public int getBlue() {
+		return b;
+	}
 
-    //Or even these
-    public Color getColor(){
-        return new Color(r,g,b);
-    }
+	public Color getColor() {
+		return new Color(r, g, b);
+	}
 
-    public int getARGB(){
-        return 0xFF000000 | ((r << 16) & 0x00FF0000) | ((g << 8) & 0x0000FF00) | b;
-    }
+	public int getARGB() {
+		return 0xFF000000 | ((r << 16) & 0x00FF0000) | ((g << 8) & 0x0000FF00) | b;
+	}
 }

@@ -25,7 +25,7 @@ public class TerminTest extends TestCase {
 	private TerminErstellenStatus terminStatus;
 	private SimpleDateFormat sdf;
 	
-	/*Test: Termin erstellen*/
+	//Test: Termin erstellen
 	@Test
 	public void testTermin()
 	{

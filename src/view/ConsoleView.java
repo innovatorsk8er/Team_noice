@@ -1,11 +1,9 @@
 package view;
-/**
- * @author Ernesto Escalier
- * GUI; Benutzeroberfläche unserer TerminListe
- */
+
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -31,6 +29,11 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+
+/**
+ * @author Ernesto Escalier
+ * GUI; Benutzeroberf\u00e4che unserer TerminListe
+ */
 
 public class ConsoleView extends JFrame {
 
@@ -67,9 +70,8 @@ public class ConsoleView extends JFrame {
 	private JButton jbtnTerminSpeichern = new JButton(Navigation.SPEICHERN.getString());
 	private JButton jbtnTerminBearbeitenSpeichern = new JButton(Navigation.SPEICHERN.getString());
 
-	/**
+	/*
 	 * Erstellt das GUI und deren Tabs.
-	 * 
 	 * @param titel
 	 */
 	public ConsoleView(String titel, TerminListModel terminListModel) {
@@ -86,9 +88,7 @@ public class ConsoleView extends JFrame {
 		setVisible(true);
 	}
 
-	/*
-	 * Hier wird die Tab-View "Neuen Termin erstellen" initialsiert.
-	 */
+	// Hier wird die Tab-View "Neuen Termin erstellen" initialsiert.
 	public void initNeuerTermin() {
 		// Tab-Header-Bereich
 		jbtnTabNeuerTerminSchliessen.setOpaque(false);
@@ -171,9 +171,7 @@ public class ConsoleView extends JFrame {
 		neuerTerminPanel.add(jbtnTerminSpeichern);
 	}
 
-	/*
-	 * Hier wird die Tab-View "Termin bearbeiten" initialsiert.
-	 */
+	//Hier wird die Tab-View "Termin bearbeiten" initialsiert.
 	public void initBearbeiteTermin(Termin termin) {
 		// Tab-Header-Bereich
 		jbtnTabBearbeteTerminSchliessen.setOpaque(false);
@@ -262,31 +260,12 @@ public class ConsoleView extends JFrame {
 
 	}
 
-	/*
-	 * Hier wird die JList mit den Terminen initialisiert.
-	 */
+	// Hier wird die JList mit den Terminen initialisiert.
 	private void initTermineListePane() {
 		jList = new JList<Termin>(terminListModel);
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setViewportView(jList);
-		// Farben setzer
-		/*
-		 * TODO Farbe setzen bei JList jList.setCellRenderer(new
-		 * TerminListCellRenderer()); jList.setCellRenderer(new
-		 * DefaultListCellRenderer() {
-		 * 
-		 * @Override public Component getListCellRendererComponent(JList list, Object
-		 * value, int index, boolean isSelected, boolean cellHasFocus) { Component c =
-		 * super.getListCellRendererComponent(list, value, index, isSelected,
-		 * cellHasFocus); if (value instanceof Termin) { Termin nextTermin = (Termin)
-		 * value; setText(nextTermin.name); if (nextUser.loggedIn) {
-		 * setForeground(Color.GREEN); } else { setForeground(Color.RED); }
-		 * 
-		 * } else { setText("whodat?"); } return c; }
-		 * 
-		 * });
-		 */
-		//
+		
 		termineListePane = new JPanel();
 		tabbedPane.addTab(Navigation.TERMIN_LISTE.getString(), null, termineListePane, "Siehe deine Termine an");
 		termineListePane.setLayout(new BorderLayout());
@@ -301,9 +280,7 @@ public class ConsoleView extends JFrame {
 		termineListePane.add(panelButtons, BorderLayout.SOUTH);
 	}
 
-	/*
-	 * Hier wird die Tab-View "Profil" initialsiert.
-	 */
+	// Hier wird die Tab-View "Profil" initialsiert.
 	private void initProfil() {
 		profilPane = new JPanel();
 		tabbedPane.addTab(Navigation.PROFIL.getString(), null, profilPane, "Passe hier dein Profil an");
@@ -340,9 +317,7 @@ public class ConsoleView extends JFrame {
 		profilPane.add(jbtnProfilLaden);
 	}
 
-	/*
-	 * Hier wird die Info-Leiste für die anstehenden Termine initialisiert.
-	 */
+	// Hier wird die Info-Leiste f\u00fcr die anstehenden Termine initialisiert.
 	private void initReminderContent() {
 		lblReminder = new JLabel();
 		lblReminder.setToolTipText("Infoleiste \u00FCber k\u00FCnftige Termine.");
@@ -350,9 +325,7 @@ public class ConsoleView extends JFrame {
 		contentPane.add(lblReminder, BorderLayout.NORTH);
 	}
 
-	/*
-	 * Hier wird der Status-Info-Bereich initialisiert.
-	 */
+	// Hier wird der Status-Info-Bereich initialisiert.
 	private void initStatusContent() {
 		lblStatus = new JLabel("Alles OK");
 		lblStatus.setToolTipText("Status-Leiste \u00FCber Eingaben.");
@@ -360,9 +333,7 @@ public class ConsoleView extends JFrame {
 		contentPane.add(lblStatus, BorderLayout.SOUTH);
 	}
 
-	/*
-	 * Hier werden alle Tabs, die für die GUI-Ansicht gebraucht werden initialsiert.
-	 */
+	//Hier werden alle Tabs, die f\u00fcr die GUI-Ansicht gebraucht werden initialsiert.
 	private void initMainContent() {
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		contentPane.add(tabbedPane, BorderLayout.CENTER);
@@ -373,97 +344,79 @@ public class ConsoleView extends JFrame {
 		initProfil();
 	}
 
-	/*
-	 * Vom Textfeld Vorname wird ausgelesen
-	 */
+	//Vom Textfeld Vorname wird ausgelesen
 	public JTextField getTxtVorname() {
 		return txtVorname;
 	}
-	/*
-	 * Vom Textfeld Vorname wird gesetzt
-	 */
+	// Vom Textfeld Vorname wird gesetzt
 	public void setTxtVorname(JTextField txtVorname) {
 		this.txtVorname = txtVorname;
 	}
-	/*
-	 * Vom Textfeld Name wird ausgelesen
-	 */
+	//Vom Textfeld Name wird ausgelesen
 	public JTextField getTxtNachname() {
 		return txtNachname;
 	}
 
-	/*
-	 * Vom Textfeld Nachname wird gesetzt
-	 */
+	// Vom Textfeld Nachname wird gesetzt
 	public void setTxtNachname(JTextField txtNachname) {
 		this.txtNachname = txtNachname;
 	}
 
-	/*
-	 * Vom Textfeld Mail wird ausgelesen
-	 */
+	//Vom Textfeld Mail wird ausgelesen
 	public JTextField getTxtMail() {
 		return txtMail;
 	}
 
-	/*
-	 * Vom Textfeld Mail wird gesetzt
-	 */
+	//Vom Textfeld Mail wird gesetzt
 	public void setTxtMail(JTextField txtMail) {
 		this.txtMail = txtMail;
 	}
 
-	/*
-	 * Das Objekt LabelReminder wird zurückgegeben
-	 */
+	//Das Objekt LabelReminder wird zur\u00fcckgegeben
 	public JLabel getLblReminder() {
 		return lblReminder;
 	}
 
-	/*
-	 * Das Objekt LabelStatus wird zurückgegeben
-	 */
+	//Das Objekt LabelStatus wird zur\u00fcckgegeben
 	public JLabel getLblStatus() {
 		return lblStatus;
 	}
 
-	/*
-	 * Das Objekt ButtonNeuerTermin wird zurückgegeben
-	 */
+	// Das Objekt ButtonNeuerTermin wird zur\u00fcckgegeben
 	public JButton getJbtnNeuerTermin() {
 		return jbtnNeuerTermin;
 	}
 
 	/*
-	 * Das Objekt ButtonTerminBearbeiten wird zurückgegeben
+	 * Das Objekt ButtonTerminBearbeiten wird zur\u00fcckgegeben
 	 */
 	public JButton getJbtnTerminBearbeiten() {
 		return jbtnTerminBearbeiten;
 	}
 
 	/*
-	 * Das Objekt ButtonTerminSpeichern wird zurückgegeben
+	 * Das Objekt ButtonTerminSpeichern wird zur\u00fcckgegeben
 	 */
 	public JButton getJbtnProfilspeichern() {
 		return jbtnProfilspeichern;
 	}
 
 	/*
-	 * Das Objekt ButtonProfilLaden wird zurückgegeben
+	 * Das Objekt ButtonProfilLaden wird zur\u00fcckgegeben
 	 */
 	public JButton getJbtnProfilLaden() {
 		return jbtnProfilLaden;
 	}
 
 	/*
-	 * Das Objekt LabelReminder wird zurückgegeben
+	 * Das Objekt LabelReminder wird zur\u00fcckgegeben
 	 */
 	public JTabbedPane getTabbedPane() {
 		return tabbedPane;
 	}
 
 	/*
-	 * Das Objekt ButtonNeuerTerminSchliessen wird zurückgegeben
+	 * Das Objekt ButtonNeuerTerminSchliessen wird zur\u00fcckgegeben
 	 */
 	public JButton getJbtnTabNeuerTerminSchliessen() {
 		return jbtnTabNeuerTerminSchliessen;
@@ -501,9 +454,7 @@ public class ConsoleView extends JFrame {
 		return bisDatum;
 	}
 
-	/*
-	 * Die Auswahlliste mit dem Enum "Terminwiederkehrend" wird zurückgegeben
-	 */
+	//Die Auswahlliste mit dem Enum "Terminwiederkehrend" wird zur\u00fcckgegeben
 	public JComboBox<TerminWiederkehrend> getjComboBoxWTermine() {
 		return jComboBoxWTermine;
 	}
@@ -516,9 +467,7 @@ public class ConsoleView extends JFrame {
 		return jTextAreaEinladungen;
 	}
 
-	/*
-	 * Das Objekt JList mit den Terminen drin wird zurückgegeben.
-	 */
+	//Das Objekt JList mit den Terminen drin wird zur\u00fcckgegeben.
 	public JList<Termin> getjList() {
 		return jList;
 	}

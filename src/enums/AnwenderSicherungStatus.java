@@ -1,10 +1,8 @@
 package enums;
+
 /**
- * 
- * @author Viviane Traber
- * Enumerations f\u00fcr den Status der Anwendersicherung.
- * R\u00fcckgabewerte f\u00fcrs GUI
- *
+ * @author Viviane Traber 
+ * Enumerations f\u00fcr den Status der Anwendersicherung. R\u00fcckgabewerte f\u00fcrs GUI
  */
 
 public enum AnwenderSicherungStatus {

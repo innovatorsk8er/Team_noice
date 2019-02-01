@@ -6,8 +6,9 @@ import javax.swing.UIManager.LookAndFeelInfo;
 import control.Controller;
 import model.Model;
 import view.ConsoleView;
-/** 
- * @author Ernesto Escalier
+
+/*
+ * @author Ernesto Escalier 
  * MainKlasse; von hier wird das Programm gestartet
  * Start Programm mit Klick auf "Run"
  */
@@ -15,9 +16,10 @@ import view.ConsoleView;
 public class StartOfEverything {
 
 	/*
-	 * In der Main-Methode wird auch das Look & Feel - Design "Nimbus" initialisiert.
-	 * Ansonsten für das MVC-Pattern die wichtigen KLassen Model, View und Controller.
-	 * Args-Paramter werden hier nicht bearbeitet oder benötigt.
+	 * In der Main-Methode wird auch das Look & Feel - Design "Nimbus"
+	 * initialisiert. Ansonsten f\u00fcr das MVC-Pattern die wichtigen KLassen
+	 * Model, View und Controller. Args-Paramter werden hier nicht bearbeitet oder
+	 * ben\u00f6tigt.
 	 */
 	public static void main(String[] args) {
 		// NIMBUS Design
@@ -29,7 +31,7 @@ public class StartOfEverything {
 				}
 			}
 		} catch (Exception e) {
-			// If Nimbus is not available
+			// Wenn Nimbus-Design nicht vorhanden ist, dann wird das Standard-GUI Design geladen.
 		}
 		Model model = new Model();
 		ConsoleView consoleView = new ConsoleView("TerminListe 1.0", model.getTerminListeModel());

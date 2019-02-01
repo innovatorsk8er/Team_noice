@@ -7,7 +7,8 @@ import model.Termin;
 import model.TerminListModel;
 
 /**
- * @author Ernesto Escalier Test-TerminListModel, f\u00fcr Terminliste
+ * @author Ernesto Escalier 
+ * Test-TerminListModel, f\u00fcr Terminliste
  */
 
 public class TerminListModelTest extends TestCase {
@@ -15,14 +16,14 @@ public class TerminListModelTest extends TestCase {
 	private TerminListModel terminListModel;
 	private Termin termin;
 
-	/* Test: Initialisiere ArrayList leer */
+	// Test: Initialisiere ArrayList leer 
 	@Test
 	public void testEmptyArrayList() {
 		terminListModel = new TerminListModel();
 		assertEquals(terminListModel.getTerminListe().isEmpty(), true);
 	}
 
-	/* Test: Füge ein Termin in die ArrayListe */
+	// Test: F\u00fcge ein Termin in die ArrayListe 
 	@Test
 	public void testAddArrayList() {
 		terminListModel = new TerminListModel();

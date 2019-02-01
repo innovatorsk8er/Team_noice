@@ -8,42 +8,36 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 import enums.AnwenderSicherungStatus;
+
 /**
- * @author Ernesto Escalier
- * Sicherungsmechanismus des Anwenderprofils. 
+ * @author Ernesto Escalier 
+ * Sicherungsmechanismus des Anwenderprofils.
  */
 public class AnwenderSicherung implements Serializable {
-
 
 	private static final long serialVersionUID = 1L;
 	private String fileNamePath = "c:\\temp\\TerminListe.noice";
 	private AnwenderSicherungStatus anwenderSicherungStatus = AnwenderSicherungStatus.KEIN;
 
-	/*
-	 * Gibt den Speicher.Pfad zurück
-	 */
+	// Gibt den Speicher.Pfad zur\u00fcck
 	public String getFileNamePath() {
 		return fileNamePath;
 	}
-	
-	/*
-	 * Gibt den Enum-Wert des Sicherungsstatus zurück
-	 */
+
+	//Gibt den Enum-Wert des Sicherungsstatus zur\u00fcck
 	public AnwenderSicherungStatus getAnwenderSicherungStatus() {
 		return anwenderSicherungStatus;
 	}
-	
-	/*
-	 * Setzt einen neuen Speicherort fest.
-	 */
+
+	// Setzt einen neuen Speicherort fest.
 	public void setFileNamePath(String path) {
-		fileNamePath=path;
+		fileNamePath = path;
 	}
 
 	/*
-	 * Mit der Übergabe des Paramemeters Anwenders, werden all Termine sowie dessen Profil
-	 * gespeichert.
-	 * Im übrigen wird der Benutzer informiert, ob der Speichervorgang erfolgreich war oder nicht.
+	 * Mit der \u00dcbergabe des Paramemeters Anwenders, werden all Termine sowie
+	 * dessen Profil gespeichert. Im \u00dcbrigen wird der Benutzer informiert, ob
+	 * der Speichervorgang erfolgreich war oder nicht.
 	 */
 	public void serializeModel(Anwender anwender) {
 		FileOutputStream fout = null;
@@ -83,8 +77,8 @@ public class AnwenderSicherung implements Serializable {
 	}
 
 	/*
-	 * Es wird das Profil des Benutzers geladen (Objekt Anwender)
-	 * Auch hier wird der Status durchgegeben, ob das Laden erfolreich war oder nicht.
+	 * Es wird das Profil des Benutzers geladen (Objekt Anwender) Auch hier wird der
+	 * Status durchgegeben, ob das Laden erfolreich war oder nicht.
 	 */
 	public Anwender deserialzeModel() {
 		Anwender anwender = null;

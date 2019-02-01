@@ -8,16 +8,17 @@ import enums.AnwenderStatus;
 import junit.framework.TestCase;
 import model.Anwender;
 
-
 /**
- * Test-Anwender und Profil
  * @author Ernesto Escalier 
+ * Test-Anwender mit 2 Methoden und mehreren Test-Cases
  */
 public class AnwenderTest extends TestCase {
 
 	private static Logger log;
 	private Anwender anwender;
 
+	
+	 // Benutzer-Objekt wird leer instanziert getestet
 	@DisplayName("Test - Benutzer ist nicht einsatzbereit.")
 	@Test
 	public void testBenutzerFrischInstantiert() {
@@ -27,6 +28,7 @@ public class AnwenderTest extends TestCase {
 
 	}
 
+	//Benutzer wird befüllt und die Werte abgerufen
 	@DisplayName("Test - Benutzer ist einsatzbereit.")
 	@Test
 	public void testBenutzerEinsatzbereit() {
@@ -35,10 +37,10 @@ public class AnwenderTest extends TestCase {
 		anwender.setNachname("Muster");
 		anwender.setEmail("hans@muster.ch");
 		anwender.setAnwenderStatus(AnwenderStatus.EINSATZBEREIT);
-		
+
 		assertEquals(AnwenderStatus.EINSATZBEREIT.getAnwenderStatus(),
 				anwender.getAnwenderStatus().getAnwenderStatus());
-		
+
 		assertEquals("Hans", anwender.getVorname());
 		assertEquals("Muster", anwender.getNachname());
 		assertEquals("hans@muster.ch", anwender.getEmail());
