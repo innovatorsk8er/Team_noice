@@ -10,7 +10,7 @@ import javax.swing.ListCellRenderer;
 import model.Termin;
 
 /**
- * @Author Ernesto Escalier
+ * @author Ernesto Escalier
  * Jede Zelle bei der JlIst wird mit dieser Klasse die Farber geändert.
  */
 public class TerminListCellRenderer implements ListCellRenderer {
