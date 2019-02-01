@@ -8,6 +8,11 @@ import enums.AnwenderStatus;
 import junit.framework.TestCase;
 import model.Anwender;
 
+
+/**
+ * Test-Anwender und Profil
+ * @author Ernesto Escalier 
+ */
 public class AnwenderTest extends TestCase {
 
 	private static Logger log;
