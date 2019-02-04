@@ -23,10 +23,10 @@ public class PanelDatumAuswahl extends JPanel{
 	private String strName;
 	private JSpinner.DateEditor editor;
 
-	/*
+	/**
 	 * Dieser JPanel hat eine Bezeichnung, damit beim 
 	 * GUI-Aufbau dies unterschieden werden kann
-	 * @param strName
+	 * @param strName StrName
 	 */
 	public PanelDatumAuswahl(String strName) {
 		this.strName = strName;
@@ -34,7 +34,7 @@ public class PanelDatumAuswahl extends JPanel{
 		erstelleDatumZeitPanel();
 	}
 
-	// Die Felder Von-Bis-Datum werden mit einem Spinner initialisiert.
+	/** Die Felder Von-Bis-Datum werden mit einem Spinner initialisiert.*/
 	private void erstelleDatumZeitPanel() {
 		Calendar calendar = new GregorianCalendar();
 		Date now = new Date();
@@ -58,9 +58,9 @@ public class PanelDatumAuswahl extends JPanel{
 		this.add(spinner);
 	}
 
-	/* Hier wird das Datum initialisiert. 
+	/** Hier wird das Datum initialisiert. 
 	 * @return Calendar-Objekt
-	 * @throws ParseException
+	 * @throws ParseException wirft eine Fehlermeldung, falls ein String nicht ins Datum-Objekt umwegendalt werden kann
 	 */
 	public Calendar getCalendar() throws ParseException {
 		SimpleDateFormat sdf = new SimpleDateFormat(DatumFormat.DATUM_ZEIT_SCHWEIZ.getFormat());
@@ -75,7 +75,7 @@ public class PanelDatumAuswahl extends JPanel{
 		return strName;
 	}
 
-	/*
+	/**
 	 * Damit das Datum bearbeitet werden kann wird der Editor des Spinners
 	 * returniert.
 	 * @return JSpinner

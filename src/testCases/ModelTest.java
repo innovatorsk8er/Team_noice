@@ -5,10 +5,8 @@ import org.junit.jupiter.api.Test;
 import enums.AnwenderSicherungStatus;
 import enums.AnwenderStatus;
 import junit.framework.TestCase;
-import model.Anwender;
-import model.AnwenderSicherung;
 import model.Model;
-import model.TerminListModel;
+
 
 /**
  * @author Ernesto Escalier
@@ -17,9 +15,7 @@ import model.TerminListModel;
 
 public class ModelTest extends TestCase{
 
-	private Anwender anwender;
-	private AnwenderSicherung anwenderSicherung;
-	private TerminListModel terminListModel;
+
 	private Model			model;
 	
 	//Test: Alle wichtigen Variabeln für das Model werden getestet
@@ -30,6 +26,6 @@ public class ModelTest extends TestCase{
 		assertEquals(model.getAnwenderSicherung().getAnwenderSicherungStatus(), AnwenderSicherungStatus.KEIN);
 		assertEquals(model.getTerminListeModel().getTerminListe().isEmpty(), true);
 		assertEquals(model.getWillkommenTxt(), "Willkommen 'mir' noch unbekannter Benutzer!" + " Bitte lade das Profil");
-		assertEquals(model.getKeineZukuenftigeTermine(), "Keine k\u00FCnftige Termine momentan vorhanden");
+		assertEquals(model.getKeineZukuenftigeTermine(), "Keine kuenftige Termine momentan vorhanden");
 	}
 }

@@ -34,10 +34,11 @@ public class AnwenderSicherung implements Serializable {
 		fileNamePath = path;
 	}
 
-	/*
-	 * Mit der \u00dcbergabe des Paramemeters Anwenders, werden all Termine sowie
-	 * dessen Profil gespeichert. Im \u00dcbrigen wird der Benutzer informiert, ob
+	/**
+	 * Mit der Uebergabe des Paramemeters Anwenders, werden all Termine sowie
+	 * dessen Profil gespeichert. Im Uebrigen wird der Benutzer informiert, ob
 	 * der Speichervorgang erfolgreich war oder nicht.
+	 * @param anwender Anwender
 	 */
 	public void serializeModel(Anwender anwender) {
 		FileOutputStream fout = null;
@@ -76,9 +77,10 @@ public class AnwenderSicherung implements Serializable {
 		}
 	}
 
-	/*
+	/**
 	 * Es wird das Profil des Benutzers geladen (Objekt Anwender) Auch hier wird der
 	 * Status durchgegeben, ob das Laden erfolreich war oder nicht.
+	 * @return anwender
 	 */
 	public Anwender deserialzeModel() {
 		Anwender anwender = null;

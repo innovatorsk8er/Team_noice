@@ -16,7 +16,7 @@ public class Anwender implements Serializable {
 	private String email;
 	private AnwenderStatus anwenderStatus;
 
-	/*
+	/**
 	 * Standard Konstruktor, der alle erforderlichen Variabeln mit einem
 	 * Standard-Wert initialsiert.
 	 */

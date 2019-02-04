@@ -2,7 +2,7 @@ package model;
 
 /**
  * @author Fatma Gediz 
- * GUI-Anweisungen f\u00fcr den User
+ * GUI-Anweisungen fuer den User
  */
 
 public class Model {
@@ -10,18 +10,19 @@ public class Model {
 	private AnwenderSicherung anwenderSicherung;
 	private TerminListModel terminListModel;
 
-	/*
+	/**
 	 * Standart Konstruktor: Hier werden die 3 Variabeln initialisiert: Anwender,
 	 * Anwendersicherung und den TerminListModel
 	 */
 	public Model() {
-		// Fragen nach neuen Anwender oder laden der Datei
+		/** Fragen nach neuen Anwender oder laden der Datei*/
 		anwender = new Anwender();
 		anwenderSicherung = new AnwenderSicherung();
 		terminListModel = new TerminListModel();
 	}
 
-	// Begr\u00fcssungstext wird hier abgeholt.
+	/* Begruessungstext wird hier abgeholt.
+	 * @return String*/
 	public String getWillkommenTxt() {
 		return "Willkommen 'mir' noch unbekannter Benutzer!" + " Bitte lade das Profil";
 	}
@@ -31,11 +32,11 @@ public class Model {
 	 * Termine vorhanden sind.
 	 */
 	public String getKeineZukuenftigeTermine() {
-		return "Keine k\u00FCnftige Termine momentan vorhanden";
+		return "Keine kuenftige Termine momentan vorhanden";
 	}
 
-	/*
-	 * Das Profil des Anwenders wird \u00fcber die Schnittstelle AnwenderSicherung
+	/**
+	 * Das Profil des Anwenders wird ueber die Schnittstelle AnwenderSicherung
 	 * geladen oder wenn es nicht existiert, leer initialisiert.
 	 */
 	public void ladeAnwenderSicherung() {
@@ -45,8 +46,8 @@ public class Model {
 		}
 	}
 
-	/*
-	 * Hier wird das Profil \u00fcber die Schnittstelle AnwenderSicherung
+	/**
+	 * Hier wird das Profil ueber die Schnittstelle AnwenderSicherung
 	 * abgespeichert.
 	 */
 	public void speichereAnwenderSicherung() {

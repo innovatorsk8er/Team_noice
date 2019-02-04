@@ -3,21 +3,20 @@ package testCases;
 import org.junit.jupiter.api.Test;
 
 import enums.AnwenderSicherungStatus;
-import enums.AnwenderStatus;
 import junit.framework.TestCase;
 import model.Anwender;
 import model.AnwenderSicherung;
 
 /**
  * @author Fatma Gediz 
- * Test-AnwendersicheurngsKlasse, f\u00fcr Anwender speichern, laden und Anwendersicherungsstatus
+ * Test-AnwendersicheurngsKlasse, fuer Anwender speichern, laden und Anwendersicherungsstatus
  */
 
 public class AnwenderSicherungTest extends TestCase {
 	private AnwenderSicherung anwenderSicherung;
 	private Anwender anwender;
 
-	// Test: Status beim Anlegen bzw. Speichernn des Profils/Anwenders 
+	/** Test: Status beim Anlegen bzw. Speichernn des Profils/Anwenders */
 	@Test
 	public void testAnwenderSicherung() {
 		anwenderSicherung = new AnwenderSicherung();

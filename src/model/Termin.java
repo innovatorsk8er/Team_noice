@@ -1,18 +1,14 @@
 package model;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
-
 import enums.DatumFormat;
 import enums.Farbe;
 
 /**
  * @author Fatma Gediz 
- * Terminklasse, f\u00fcr Terminerstellung inkl. allen Optionen
+ * Terminklasse, fuer Terminerstellung inkl. allen Optionen
  */
 public class Termin {
 	private String titel;

@@ -13,18 +13,22 @@ import view.ConsoleView;
 
 /**
  * @author Ernesto Escalier 
- * Gibt die Anweisungen weiter an das GUI(View) bzw. die ausgew\u00e4hlten Werte 
- * im GUI an das Model weiter f\u00fcr die Weiterverarbeitung.
+ * Gibt die Anweisungen weiter an das GUI(View) bzw. die ausgewaehlten Werte 
+ * im GUI an das Model weiter fuer die Weiterverarbeitung.
  */
 public class Controller {
 
 	private Model model;
 	private ConsoleView consoleView;
 
-	/*
+	/**
 	 * Hier werden die Schnittstellen zu den Schwesternklassen Model und View
 	 * sichergestellt. Ebenfalls werden hier die Listener der Gui-Objekte
 	 * initialisiert.
+	 * @param model Model
+	 * 
+	 * @param consoleView ConsoleView
+	 * 
 	 */
 	public Controller(Model model, ConsoleView consoleView) {
 		super();
@@ -33,7 +37,7 @@ public class Controller {
 		initView();
 	}
 
-	// Start initialsierung des GUI
+	/** Start initialsierung des GUI*/
 	private void initView() {
 		consoleView.getLblStatus().setText(model.getWillkommenTxt());
 		consoleView.getLblStatus().setFont(new Font(Font.DIALOG, Font.BOLD, 18));
@@ -45,7 +49,7 @@ public class Controller {
 		consoleView.getJbtnTerminBearbeiten().setEnabled(false);
 	}
 
-	// Die ActionsListener der Buttons werden hier initialisiert.
+	/** Die ActionsListener der Buttons werden hier initialisiert.*/
 	public void initController() {
 		consoleView.getJbtnProfilLaden().addActionListener(e -> ladeProfil());
 		consoleView.getJbtnProfilspeichern().addActionListener(e -> speichereProfil());
@@ -57,31 +61,31 @@ public class Controller {
 		consoleView.getJbtnTabBearbeteTerminSchliessen().addActionListener(e -> bearbeiterTerminSpeichern());
 	}
 
-	// Hiermit wird ein neuer Termin erstellt
+	/** Hiermit wird ein neuer Termin erstellt*/
 	private void neuerTermin() {
 		consoleView.initNeuerTermin();
 		consoleView.getJbtnNeuerTermin().setEnabled(false);
 	}
 
-	// Termin-Tab wird geschlossen
+	/** Termin-Tab wird geschlossen*/
 	private void neuerTerminSchliessen() {
 		consoleView.getTabbedPane().remove(consoleView.getPanelNeuerTermin());
 		consoleView.getJbtnNeuerTermin().setEnabled(true);
 	}
 
-	// Termin-Tab wird geschlossen
+	/** Termin-Tab wird geschlossen*/
 	private void bearbeiteTermin() {
 		consoleView.initBearbeiteTermin(consoleView.getjList().getSelectedValue());
 		consoleView.getJbtnTerminBearbeiten().setEnabled(false);
 	}
 
-	// "Termin-Tab bearbeiten" wird geschlossen
+	/** "Termin-Tab bearbeiten" wird geschlossen*/
 	private void bearbeiteTerminSchliessen() {
 		consoleView.getTabbedPane().remove(consoleView.getPanelTerminBearbeiten());
 		consoleView.getJbtnTerminBearbeiten().setEnabled(true);
 	}
 
-	// Das Profil-Tab übergibt alle eingetragenen Werte an das Model weiter.
+	/** Das Profil-Tab übergibt alle eingetragenen Werte an das Model weiter.*/
 	private void speichereProfil() {
 		if (consoleView.getTxtVorname().getText().equals("")) {
 			consoleView.getLblStatus().setText(AnwenderStatus.OFFEN_VORNAME.getAnwenderStatus());
@@ -100,7 +104,7 @@ public class Controller {
 		consoleView.getLblStatus().setFont(new Font(Font.DIALOG, Font.BOLD, 18));
 	}
 
-	// Das Profil wird hiermit ins GUI geladens
+	/** Das Profil wird hiermit ins GUI geladens*/
 	private void ladeProfil() {
 		model.ladeAnwenderSicherung();
 		consoleView.getLblStatus().setText(model.getAnwender().getAnwenderStatus().getAnwenderStatus());
@@ -114,8 +118,7 @@ public class Controller {
 		}
 	}
 
-	// Termin anpassungen im GUI werden hier an das Model \u00fcbergeben f\u00fcr
-	// das Sichern
+	/** Termin anpassungen im GUI werden hier an das Model Uebergeben fuer das Sichern*/
 	private void neuerTerminSpeichern() {
 		if (consoleView.getTxtTerminTitel().getText().equals("")) {
 			consoleView.getLblStatus().setText(TerminErstellenStatus.TITEL.getTerminStatus());
@@ -158,13 +161,12 @@ public class Controller {
 				consoleView.getTabbedPane().remove(consoleView.getPanelNeuerTermin());
 				consoleView.getJbtnNeuerTermin().setEnabled(true);
 			} catch (ParseException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 	}
 
-	// Button Befehl-Methode
+	/** Button Befehl-Methode*/
 	private void bearbeiterTerminSpeichern() {
 		consoleView.getjList().getSelectedValue().setTitel(consoleView.getTxtTerminTitel().getText());
 		consoleView.getjList().getSelectedValue().setOrt(consoleView.getTxtTerminOrt().getText());

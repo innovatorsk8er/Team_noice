@@ -2,7 +2,7 @@ package enums;
 
 /**
  * @author Alessio Crincoli 
- * Navigation f\u00fcr das GUI
+ * Navigation fuer das GUI
  */
 public enum Navigation {
 

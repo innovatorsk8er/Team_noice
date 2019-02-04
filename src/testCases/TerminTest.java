@@ -1,35 +1,26 @@
 package testCases;
 
-import java.text.SimpleDateFormat;
+
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-
 import org.junit.jupiter.api.Test;
-
-import enums.AnwenderSicherungStatus;
-import enums.DatumFormat;
-import enums.TerminErstellenStatus;
 import junit.framework.TestCase;
-import model.Anwender;
-import model.AnwenderSicherung;
 import model.Termin;
 
 /**
  * @author Fatma Gediz 
- * Test-Terminklasse, f\u00fcr Terminerstellung und Terminstatus
+ * Test-Terminklasse, fuer Terminerstellung und Terminstatus
  */
 
 public class TerminTest extends TestCase {
 
 	private Termin termin;
-	private TerminErstellenStatus terminStatus;
-	private SimpleDateFormat sdf;
+
 	
 	//Test: Termin erstellen
 	@Test
 	public void testTermin()
 	{
-		SimpleDateFormat sdf = new SimpleDateFormat(DatumFormat.DATUM_ZEIT_SCHWEIZ.getFormat());
 		Calendar start = new GregorianCalendar(2019,2,1,13,24,00);	
 		Calendar end = new GregorianCalendar(2019,2,2,13,24,00);
 		termin = new Termin("TerminTest", start, end);

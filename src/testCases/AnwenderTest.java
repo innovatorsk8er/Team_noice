@@ -2,8 +2,6 @@ package testCases;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.commons.logging.Logger;
-
 import enums.AnwenderStatus;
 import junit.framework.TestCase;
 import model.Anwender;
@@ -14,7 +12,6 @@ import model.Anwender;
  */
 public class AnwenderTest extends TestCase {
 
-	private static Logger log;
 	private Anwender anwender;
 
 	

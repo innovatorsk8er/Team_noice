@@ -8,7 +8,7 @@ import model.TerminListModel;
 
 /**
  * @author Ernesto Escalier 
- * Test-TerminListModel, f\u00fcr Terminliste
+ * Test-TerminListModel, fuer Terminliste
  */
 
 public class TerminListModelTest extends TestCase {
